@@ -1,12 +1,13 @@
-# app/repositories/attempt_repository.py
 from __future__ import annotations
 
 from app.db.mongo import get_db, PURCHASE_ATTEMPTS
 
 
 async def insert_attempt(doc: dict) -> None:
-    """Inserta un intento crudo de compra."""
-    await get_db()[PURCHASE_ATTEMPTS].insert_one(doc)
+    """Persist a raw attempt idempotently."""
+    await get_db()[PURCHASE_ATTEMPTS].replace_one(
+        {"id": doc["id"]}, doc, upsert=True
+    )
 
 
 async def get_attempt_by_id(attempt_id: str) -> dict | None:

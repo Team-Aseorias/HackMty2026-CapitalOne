@@ -1,12 +1,13 @@
-# app/repositories/outcome_repository.py
 from __future__ import annotations
 
 from app.db.mongo import get_db, OUTCOMES
 
 
 async def insert_outcome(doc: dict) -> None:
-    """Registra el resultado posterior de una decisión (completed/abandoned/blocked)."""
-    await get_db()[OUTCOMES].insert_one(doc)
+    """Persist a decision outcome idempotently."""
+    await get_db()[OUTCOMES].replace_one(
+        {"decision_id": doc["decision_id"]}, doc, upsert=True
+    )
 
 
 async def get_outcome_by_decision_id(decision_id: str) -> dict | None:
