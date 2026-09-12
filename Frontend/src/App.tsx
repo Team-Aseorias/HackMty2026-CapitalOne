@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import SimuladorCompra from './components/SimuladorCompra';
-import FeedReciente from './components/FeedReciente';
-import DecisionPanel from './components/DecisionPanel';
-import EvaluationDashboard from './components/EvaluationDashboard';
+import SimuladorCompra from './Components/SimuladorCompra';
+import FeedReciente from './Components/FeedReciente';
+import DecisionPanel from './Components/DecisionPanel';
+import EvaluationDashboard from './Components/EvaluationDashboard';
 import anclaLogo from './assets/ANCLA.png';
 import './App.css';
 
@@ -64,8 +64,15 @@ export default function App() {
         </div>
 
         {/* Zona Derecha: Logo Animado */}
-        {vistaActiva !== 'decision' && (
-          <div className="ancla-brand-wrap" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div
+          className="ancla-brand-wrap"
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            transform: `translateY(${desplazamientoY}px)`,
+          }}
+        >
             {/* Animación sutil de entrada para la imagen */}
             <div className="ancla-copy-intro">
                <img 
@@ -82,8 +89,7 @@ export default function App() {
             <div className="ancla-copy ancla-copy-intro" style={{ marginTop: '20px', textAlign: 'center' }}>
               <p>Motor de decisión de fricción anti-fraude</p>
             </div>
-          </div>
-        )}
+        </div>
 
       </div>
     </div>

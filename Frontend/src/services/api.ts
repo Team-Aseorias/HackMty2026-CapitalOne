@@ -1,5 +1,5 @@
 // 1. FUNCIÓN PARA EL SIMULADOR DE COMPRAS
-export const evaluarCompra = async (amount: string, merchant: string) => {
+export const evaluarCompra = async (_amount: string, _merchant: string) => {
   // Simulamos el tiempo de espera de una petición real
   await new Promise(resolve => setTimeout(resolve, 800)); 
   
