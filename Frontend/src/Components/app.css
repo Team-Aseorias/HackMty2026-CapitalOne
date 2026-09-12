@@ -1,0 +1,13 @@
+/* Animación para que el triángulo flote apuntando hacia la izquierda */
+.triangulo-animado {
+  animation: moverFlecha 1s infinite alternate ease-in-out;
+}
+
+@keyframes moverFlecha {
+  0% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(-25px); /* Se mueve 25px hacia las casillas */
+  }
+}
