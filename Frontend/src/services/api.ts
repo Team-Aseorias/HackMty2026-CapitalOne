@@ -1,35 +1,30 @@
-// 1. FUNCIÓN PARA EL SIMULADOR DE COMPRAS
-export const evaluarCompra = async (_amount: string, _merchant: string) => {
-  // Simulamos el tiempo de espera de una petición real
-  await new Promise(resolve => setTimeout(resolve, 800)); 
-  
-  const mockAction = Math.random() > 0.5 ? 'allow' : 'verify'; 
-  
-  return { 
-    id: 'txn_' + Math.floor(Math.random() * 100000), 
-    action: mockAction 
-  };
-};
-
-// 2. INTERFAZ Y FUNCIÓN PARA EL FEED RECIENTE
-export interface DecisionRecord {
-  id: string;
-  merchant: string;
-  amount: number;
-  action: 'allow' | 'verify';
-  status: 'SUCCESS' | 'ABANDONED' | 'PENDING';
-  timestamp: string;
+export interface PurchaseAttempt { customer_id: string; account_id: string; merchant: string; merchant_id?: string; amount: number }
+export interface Decision {
+  id: string; decision: 'allow' | 'verify'; risk_score: number; reason: string;
+  estimated_cost_allow: number | null; estimated_cost_verify: number | null; uplift: number | null;
+  allow_completion_probability: number | null; verify_completion_probability: number | null;
+  incremental_abandonment_probability: number | null; safety_override: boolean; personalization_applied: boolean;
+  context_source: 'nessie' | 'local'; persistence_source: 'mongo' | 'memory'; model_version: string;
 }
-
-export const obtenerDecisionesRecientes = async (): Promise<DecisionRecord[]> => {
-  // Simulamos la latencia de red
-  await new Promise(resolve => setTimeout(resolve, 600));
-
-  // Simulamos la respuesta de tu base de datos
-  return [
-    { id: 'txn_99212', merchant: 'Amazon', amount: 1500, action: 'allow', status: 'SUCCESS', timestamp: 'Hace 2 min' },
-    { id: 'txn_88341', merchant: 'TechStore Desconocida', amount: 8500, action: 'verify', status: 'ABANDONED', timestamp: 'Hace 5 min' },
-    { id: 'txn_77123', merchant: 'Uber', amount: 150, action: 'allow', status: 'SUCCESS', timestamp: 'Hace 12 min' },
-    { id: 'txn_66901', merchant: 'Amazon', amount: 12000, action: 'verify', status: 'SUCCESS', timestamp: 'Hace 1 hora' },
-  ];
-};
+export type Outcome = 'pending' | 'completed' | 'abandoned';
+export interface DecisionRecord extends Decision, PurchaseAttempt { action: 'allow' | 'verify'; outcome: Outcome; created_at: string }
+export interface Metrics { attempts: number; allowed: number; verified: number; completed: number; abandoned: number; pending: number; verification_rate: number; average_expected_cost: number | null; source: string }
+export interface Policy { policy: string; expected_cost: number; verification_rate: number; legitimate_completion_rate: number; fraud_loss_per_attempt: number; safety_violations: number; cost_standard_error: number; sample_size: number; seed: number; data_source: string; model_version: string }
+export async function request<T>(path: string, method = 'GET', body?: unknown, signal?: AbortSignal): Promise<T> {
+  const response = await fetch('/api' + path, { method, signal, headers: { 'Content-Type': 'application/json' }, body: body === undefined ? undefined : JSON.stringify(body) });
+  const data = await response.json().catch(() => null) as { detail?: string | { msg: string }[] } | null;
+  if (!response.ok) {
+    const detail = data?.detail;
+    const message = typeof detail === 'string' ? detail : Array.isArray(detail) ? detail.map((item: { msg: string }) => item.msg).join('; ') : 'No fue posible comunicarse con ANCLA.';
+    throw new Error(message + ' (HTTP ' + response.status + ')');
+  }
+  return data as T;
+}
+export const evaluarCompra = (attempt: PurchaseAttempt) => request<Decision>('/purchase-attempts', 'POST', attempt);
+export const obtenerDecisionesRecientes = (signal?: AbortSignal) => request<DecisionRecord[]>('/decisions/recent?limit=25', 'GET', undefined, signal);
+export const obtenerMetricas = (signal?: AbortSignal) => request<Metrics>('/dashboard/metrics', 'GET', undefined, signal);
+export const evaluarPoliticas = (rows: number, seed: number) => request<Policy[]>('/evaluations/run?rows=' + rows + '&seed=' + seed, 'POST');
+export const registrarResultado = (id: string, outcome: Exclude<Outcome, 'pending'>) => request<DecisionRecord>('/decisions/' + encodeURIComponent(id) + (outcome === 'completed' ? '/complete' : '/abandon'), 'POST');
+export const percent = (v: number | null) => v == null ? 'No disponible' : (100 * v).toFixed(1) + '%';
+export const cost = (v: number | null) => v == null ? 'No disponible' : v.toLocaleString('es-MX', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + ' u.m.';
+export const outcomeLabel = (v: string) => ({ pending: 'Pendiente', completed: 'Completada (reportada)', abandoned: 'Abandonada (reportada)' }[v] ?? v);

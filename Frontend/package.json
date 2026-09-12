@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "npm start",
+    "start": "node --env-file-if-exists=.env --experimental-strip-types server/index.ts",
+    "test": "node --experimental-strip-types --test tests/*.test.ts",
+    "test:integration": "node --experimental-strip-types --test tests/integration.ts"
   },
   "dependencies": {
     "react": "^19.2.8",

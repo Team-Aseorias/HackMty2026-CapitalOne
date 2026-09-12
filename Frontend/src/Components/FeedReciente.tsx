@@ -1,79 +1,28 @@
-import { useState, useEffect } from 'react';
-import { obtenerDecisionesRecientes, type DecisionRecord } from '../services/api';
-import anclaLogo from '../assets/ANCLA.png'; // Importamos el logo
+import { useEffect, useState } from 'react';
+import { obtenerDecisionesRecientes, outcomeLabel, cost, type DecisionRecord } from '../services/api';
 import './FeedReciente.css';
-
-interface FeedProps {
-  onBack?: () => void;
-}
-
-export default function FeedReciente({ onBack }: FeedProps) {
-  const [decisions, setDecisions] = useState<DecisionRecord[]>([]);
+export default function FeedReciente({ onBack, onSelect }: { onBack: () => void; onSelect: (record: DecisionRecord) => void }) {
+  const [records, setRecords] = useState<DecisionRecord[]>([]);
   const [loading, setLoading] = useState(true);
-
+  const [error, setError] = useState('');
   useEffect(() => {
-    const fetchDecisions = async () => {
-      try {
-        const data = await obtenerDecisionesRecientes();
-        setDecisions(data);
-      } catch (error) {
-        console.error("Error al obtener el feed", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchDecisions();
-    const interval = setInterval(fetchDecisions, 5000);
-    return () => clearInterval(interval);
+    const controller = new AbortController();
+    let timer: ReturnType<typeof setTimeout>;
+    async function refresh() {
+      try { setRecords(await obtenerDecisionesRecientes(controller.signal)); setError(''); }
+      catch (err) { if (!controller.signal.aborted) setError(err instanceof Error ? err.message : 'No se pudo actualizar.'); }
+      finally { if (!controller.signal.aborted) { setLoading(false); timer = setTimeout(refresh, 5000); } }
+    }
+    void refresh();
+    return () => { controller.abort(); clearTimeout(timer); };
   }, []);
-
-  const renderBadge = (action: string, status: string) => {
-    if (action === 'allow') return <div className="feed-badge badge-allow">Permitida</div>;
-    if (action === 'verify' && status === 'SUCCESS') return <div className="feed-badge badge-verify-success">Exitosa</div>;
-    if (action === 'verify' && status === 'ABANDONED') return <div className="feed-badge badge-verify-abandoned">Abandonada</div>;
-    return <div className="feed-badge">Pendiente</div>;
-  };
-
-  return (
-    <main className="feed-page">
-      <header className="feed-header">
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-          {/* LOGO MÁS GRANDE (height: 85px) */}
-          <img 
-              src={anclaLogo} 
-              alt="Logo ANCLA" 
-              style={{ height: '85px', width: 'auto', marginBottom: '8px' }} 
-          />
-          <p style={{ color: '#000000', fontSize: '16px', maxWidth: '450px', margin: '0', fontWeight: 600 }}>
-            Historial Operativo (Feed en vivo)
-          </p>
-        </div>
-        
-        {onBack && (
-          <button type="button" className="back-button" onClick={onBack}>
-            Volver
-          </button>
-        )}
-      </header>
-      
-      {loading && decisions.length === 0 ? (
-        <p style={{ textAlign: 'center', fontWeight: 'bold', fontSize: '18px', marginTop: '40px' }}>Cargando transacciones...</p>
-      ) : (
-        <ul className="feed-lista">
-          {decisions.map((decision) => (
-            <li key={decision.id} className="feed-item">
-              <div className="feed-item-info">
-                <strong>{decision.merchant} - ${decision.amount}</strong>
-                <span>ID: {decision.id} • {decision.timestamp}</span>
-              </div>
-              <div>
-                {renderBadge(decision.action, decision.status)}
-              </div>
-            </li>
-          ))}
-        </ul>
-      )}
-    </main>
-  );
+  return <main className="feed-page"><header className="feed-header"><h1>Historial de decisiones</h1><button className="back-button" onClick={onBack}>Volver</button></header>
+    <p>Últimas 25 decisiones, actualizadas cada 5 segundos. La recomendación y el desenlace son datos distintos.</p>
+    {loading && <p role="status">Cargando…</p>}{error && <p role="alert">{error} Los datos visibles pueden estar desactualizados.</p>}
+    {!loading && !error && records.length === 0 && <p>Todavía no hay decisiones registradas.</p>}
+    <ul className="feed-lista">{records.map(d => <li className="feed-item" key={d.id}><div className="feed-item-info">
+      <strong>{d.merchant} · {cost(d.amount)}</strong><span>{new Date(d.created_at).toLocaleString('es-MX')} · {d.id}</span>
+      <span>Recomendación: {(d.action ?? d.decision).toUpperCase()} · Resultado: {outcomeLabel(d.outcome)}</span><span>{d.persistence_source === 'mongo' ? 'Persistido' : 'En memoria'}</span>
+    </div><button onClick={() => onSelect(d)}>Ver detalle / reportar resultado</button></li>)}</ul>
+  </main>;
 }
