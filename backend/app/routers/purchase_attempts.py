@@ -1,17 +1,26 @@
+import logging
+from datetime import datetime, timezone
+from uuid import uuid4
+
 from fastapi import APIRouter
 
+from app.db.mongo import is_configured
+from app.repositories import attempt_repository
+from app.repositories.decision_repository import DecisionRepository
+from app.repositories.nessie_repository import NessieError, NessieRepository
 from app.schemas.decision import DecisionOut
 from app.schemas.purchase_attempt import PurchaseAttemptIn
 from app.services.purchase_service import PurchaseService
-from app.repositories.decision_repository import DecisionRepository
-from app.repositories.nessie_repository import NessieError, NessieRepository
 
 router = APIRouter(prefix="/purchase-attempts", tags=["purchase attempts"])
+logger = logging.getLogger(__name__)
 
 
 @router.post("", response_model=DecisionOut)
 async def create_purchase_attempt(attempt: PurchaseAttemptIn) -> DecisionOut:
     repository = DecisionRepository()
+    attempt_id = str(uuid4())
+    created_at = datetime.now(timezone.utc)
     decision_history = await repository.decision_history_for_account(attempt.account_id)
     source = "nessie"
     try:
@@ -23,9 +32,22 @@ async def create_purchase_attempt(attempt: PurchaseAttemptIn) -> DecisionOut:
     decision = PurchaseService().assess_with_context(
         attempt, history, account, decision_history
     )
+    if is_configured():
+        attempt_document = {
+            "id": attempt_id,
+            **attempt.model_dump(mode="json"),
+            "timestamp": (attempt.occurred_at or created_at).isoformat(),
+            "created_at": created_at.isoformat(),
+        }
+        try:
+            await attempt_repository.insert_attempt(attempt_document)
+        except Exception as exc:
+            logger.warning("Could not persist purchase attempt: %s", exc)
     record = await repository.save({
+        "attempt_id": attempt_id,
         **attempt.model_dump(mode="json"),
         **decision.model_dump(),
+        "action": decision.decision,
         "features_source": source,
         "context_source": source,
         "outcome": "pending",

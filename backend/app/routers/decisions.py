@@ -1,11 +1,33 @@
+import logging
 from datetime import datetime, timezone
+from uuid import uuid4
 
 from fastapi import APIRouter, HTTPException
 
+from app.db.mongo import is_configured
 from app.repositories.decision_repository import DecisionRepository
 from app.repositories.nessie_repository import NessieError, NessieRepository
+from app.repositories.outcome_repository import insert_outcome
 
 router = APIRouter(prefix="/decisions", tags=["decisions"])
+logger = logging.getLogger(__name__)
+
+
+async def _persist_outcome(
+    decision_id: str, status: str, nessie_purchase_id: str | None = None
+) -> None:
+    if not is_configured():
+        return
+    try:
+        await insert_outcome({
+            "id": str(uuid4()),
+            "decision_id": decision_id,
+            "status": status,
+            "nessie_purchase_id": nessie_purchase_id,
+            "created_at": datetime.now(timezone.utc).isoformat(),
+        })
+    except Exception as exc:
+        logger.warning("Could not persist decision outcome: %s", exc)
 
 
 @router.get("/recent")
@@ -49,6 +71,7 @@ async def complete_decision(decision_id: str) -> dict:
         "purchase": purchase,
         "purchase_destination": destination,
     })
+    await _persist_outcome(decision_id, "completed", purchase.get("id"))
     return updated or {}
 
 
@@ -60,4 +83,5 @@ async def abandon_decision(decision_id: str) -> dict:
     })
     if not updated:
         raise HTTPException(status_code=404, detail="Decision not found")
+    await _persist_outcome(decision_id, "abandoned")
     return updated

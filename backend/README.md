@@ -15,7 +15,9 @@ The interactive API documentation is available at `/docs`.
 To retain personalized verification outcomes across restarts, copy the Atlas
 credentials file to `backend/.env` (it is ignored by Git). The application
 loads `MONGODB_URI` automatically; without it, it uses the explicit in-memory
-demo fallback.
+demo fallback. The legacy names `MONGO_URI` and `MONGO_DB` are also accepted.
+When Mongo is available, startup creates indexes and the API stores raw attempts,
+decisions and outcomes in their corresponding collections.
 
 ## Nessie and causal decision flow
 
