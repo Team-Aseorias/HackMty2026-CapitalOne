@@ -3,6 +3,7 @@ import SimuladorCompra from './components/SimuladorCompra';
 import FeedReciente from './components/FeedReciente';
 import DecisionPanel from './components/DecisionPanel';
 import EvaluationDashboard from './components/EvaluationDashboard';
+import anclaLogo from './assets/ANCLA.png';
 import './App.css';
 
 type Screen = 'simulador' | 'feed' | 'decision' | 'evaluation';
@@ -62,23 +63,27 @@ export default function App() {
           <SimuladorCompra onComprar={() => setVistaActiva('decision')} />
         </div>
 
-        {/* Zona Derecha: Logo y triángulo con animación de entrada */}
-        <div className="ancla-brand-wrap">
-          <div
-            className="ancla-triangle-motion"
-            style={{ transform: `translateY(${desplazamientoY}px)` }}
-            aria-hidden="true"
-          >
-            <div className="ancla-triangle-intro">
-              <div className="ancla-triangle" />
+        {/* Zona Derecha: Logo Animado */}
+        {vistaActiva !== 'decision' && (
+          <div className="ancla-brand-wrap" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            {/* Animación sutil de entrada para la imagen */}
+            <div className="ancla-copy-intro">
+               <img 
+                 src={anclaLogo} 
+                 alt="Logo ANCLA" 
+                 style={{ 
+                   maxWidth: '400px', 
+                   width: '100%', 
+                   height: 'auto',
+                   objectFit: 'contain'
+                 }} 
+               />
+            </div>
+            <div className="ancla-copy ancla-copy-intro" style={{ marginTop: '20px', textAlign: 'center' }}>
+              <p>Motor de decisión de fricción anti-fraude</p>
             </div>
           </div>
-
-          <div className="ancla-copy ancla-copy-intro">
-            <h1>ANCLA</h1>
-            <p>Motor de decisión de fricción anti-fraude</p>
-          </div>
-        </div>
+        )}
 
       </div>
     </div>

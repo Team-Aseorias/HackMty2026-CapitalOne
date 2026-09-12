@@ -1,3 +1,4 @@
+import anclaLogo from '../assets/ANCLA.png';
 import './DecisionPanel.css'
 
 type Action = 'allow' | 'verify'
@@ -77,12 +78,13 @@ export default function DecisionPanel({
     return (
         <main className="decision-page">
             <header className="decision-header">
-                {/* APLICAMOS EL FORMATO DEL LOGO PRINCIPAL */}
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-                    <h1 style={{ fontSize: '50px', fontWeight: 'bold', color: '#000000', margin: 0, lineHeight: '1' }}>
-                        ANCLA
-                    </h1>
-                    <p style={{ color: '#000000', marginTop: '8px', fontSize: '16px', maxWidth: '450px', margin: '8px 0 0 0' }}>
+                    <img 
+                        src={anclaLogo} 
+                        alt="Logo ANCLA" 
+                        style={{ height: '85px', width: 'auto', marginBottom: '8px' }}
+                    />
+                    <p style={{ color: '#000000', fontSize: '16px', maxWidth: '450px', margin: '0', fontWeight: 'bold' }}>
                         Motor de decisión de fricción anti-fraude
                     </p>
                 </div>
@@ -143,6 +145,29 @@ export default function DecisionPanel({
                 </div>
             </section>
 
+            {onViewFeed && (
+                <div style={{ marginTop: '20px', marginBottom: '10px' }}>
+                    <button
+                        type="button"
+                        className="evaluation-link-button"
+                        style={{ 
+                            width: '100%', 
+                            backgroundColor: '#000000', 
+                            color: '#ffffff', 
+                            padding: '18px 24px', 
+                            fontSize: '16px',
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center'
+                        }}
+                        onClick={onViewFeed}
+                    >
+                        <span>Ver historial operativo en vivo </span>
+                       
+                    </button>
+                </div>
+            )}
+
             <section className="comparison-section">
                 <div className="comparison-header">
                     <div>
@@ -197,43 +222,19 @@ export default function DecisionPanel({
                 <p>Incertidumbre estimada: {Math.round(decision.uncertainty * 100)}%</p>
             </section>
 
-           <section className="decision-next-step">
-                <div>
-                    <span className="section-label">SIGUIENTE PASO</span>
-                    <h3>¿Cómo se comporta ANCLA frente a otras políticas?</h3>
-                    <p>
-                        Compara esta estrategia con una regla fija y una política predictiva
-                        sobre el conjunto de prueba sintético.
-                    </p>
+            {/* BOTÓN EXTRA CENTRADO */}
+            {onViewEvaluation && (
+                <div style={{ display: 'flex', justifyContent: 'center', marginTop: '40px', marginBottom: '20px' }}>
+                    <button
+                        type="button"
+                        className="evaluation-link-button"
+                        onClick={onViewEvaluation}
+                    >
+                        Ver evaluación de políticas →
+                    </button>
                 </div>
+            )}
 
-                {/* Contenedor para que los botones queden uno al lado del otro */}
-                <div style={{ display: 'flex', gap: '15px', flexWrap: 'wrap' }}>
-                    {onViewFeed && (
-                        <button
-                            type="button"
-                            className="evaluation-link-button"
-                            style={{ backgroundColor: '#000000', color: '#ffffff' }} // Botón en negro para diferenciarlo
-                            onClick={onViewFeed}
-                        >
-                            Ver historial (Feed)
-                        </button>
-                    )}
-                    {onViewEvaluation && (
-                        <button
-                            type="button"
-                            className="evaluation-link-button"
-                            onClick={onViewEvaluation}
-                        >
-                            Ver evaluación de políticas →
-                        </button>
-                    )}
-                </div>
-            </section>
-
-            <footer className="demo-warning">
-                Evaluación basada en un entorno sintético controlado.
-            </footer>
         </main>
     )
 }

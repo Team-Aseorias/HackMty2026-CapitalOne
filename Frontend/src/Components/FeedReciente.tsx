@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { obtenerDecisionesRecientes, type DecisionRecord } from '../services/api';
+import anclaLogo from '../assets/ANCLA.png'; // Importamos el logo
 import './FeedReciente.css';
 
 interface FeedProps {
@@ -38,23 +39,26 @@ export default function FeedReciente({ onBack }: FeedProps) {
     <main className="feed-page">
       <header className="feed-header">
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-          <h1 style={{ fontSize: '50px', fontWeight: 'bold', color: '#000000', margin: 0, lineHeight: '1' }}>
-            ANCLA
-          </h1>
-          <p style={{ color: '#000000', marginTop: '8px', fontSize: '16px', maxWidth: '450px', margin: '8px 0 0 0', fontWeight: 600 }}>
+          {/* LOGO MÁS GRANDE (height: 85px) */}
+          <img 
+              src={anclaLogo} 
+              alt="Logo ANCLA" 
+              style={{ height: '85px', width: 'auto', marginBottom: '8px' }} 
+          />
+          <p style={{ color: '#000000', fontSize: '16px', maxWidth: '450px', margin: '0', fontWeight: 600 }}>
             Historial Operativo (Feed en vivo)
           </p>
         </div>
         
         {onBack && (
           <button type="button" className="back-button" onClick={onBack}>
-            ← Volver al panel de decisión
+            Volver
           </button>
         )}
       </header>
       
       {loading && decisions.length === 0 ? (
-        <p style={{ textAlign: 'center', fontWeight: '900', fontSize: '18px' }}>Cargando transacciones...</p>
+        <p style={{ textAlign: 'center', fontWeight: 'bold', fontSize: '18px', marginTop: '40px' }}>Cargando transacciones...</p>
       ) : (
         <ul className="feed-lista">
           {decisions.map((decision) => (

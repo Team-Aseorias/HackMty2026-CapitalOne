@@ -1,3 +1,4 @@
+import anclaLogo from '../assets/ANCLA.png';
 import './EvaluationDashboard.css'
 
 type PolicyKey = 'fixed' | 'predictive' | 'causal'
@@ -79,17 +80,19 @@ export default function EvaluationDashboard({ onBack }: EvaluationDashboardProps
         <main className="evaluation-page">
             <header className="evaluation-header">
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-                    <h1 style={{ fontSize: '50px', fontWeight: 'bold', color: '#000000', margin: 0, lineHeight: '1' }}>
-                        ANCLA
-                    </h1>
-                    <p style={{ color: '#000000', marginTop: '8px', fontSize: '16px', maxWidth: '450px', margin: '8px 0 0 0' }}>
+                    <img 
+                        src={anclaLogo} 
+                        alt="Logo ANCLA" 
+                        style={{ height: '85px', width: 'auto', marginBottom: '8px' }} 
+                    />
+                    <p style={{ color: '#000000', fontSize: '16px', maxWidth: '450px', margin: '0', fontWeight: 'bold' }}>
                         Evaluación de políticas · conjunto de prueba separado
                     </p>
                 </div>
 
                 {onBack && (
                     <button type="button" className="back-button" onClick={onBack}>
-                        ← Volver al panel de decisión
+                        Volver
                     </button>
                 )}
             </header>
@@ -204,7 +207,7 @@ export default function EvaluationDashboard({ onBack }: EvaluationDashboardProps
                     </article>
                 </div>
 
-                <div className="policy-table-wrap">
+               <div className="policy-table-wrap">
                     <table className="policy-table">
                         <thead>
                             <tr>
@@ -230,19 +233,6 @@ export default function EvaluationDashboard({ onBack }: EvaluationDashboardProps
                             ))}
                         </tbody>
                     </table>
-                </div>
-            </section>
-
-            <section className="conclusion-card">
-                <div className="conclusion-mark">✓</div>
-                <div>
-                    <span className="eyebrow">CONCLUSIÓN DEMOSTRABLE</span>
-                    <h2>ANCLA reduce la pérdida neta estimada frente a las políticas comparadas.</h2>
-                    <p>
-                        Este resultado pertenece a un entorno sintético controlado. No representa
-                        métricas reales de una institución financiera ni un contrafactual observado
-                        en producción.
-                    </p>
                 </div>
             </section>
 
