@@ -1,0 +1,62 @@
+{
+  "source": "synthetic illustrative profiles; no external accounts accessed",
+  "examples": [
+    {
+      "scenario": "Same transaction: no prior abandonment",
+      "amount": 150,
+      "id": null,
+      "decision": "verify",
+      "risk_score": 0.06376471535390986,
+      "reason": "verify: estimated incremental benefit exceeds friction cost",
+      "estimated_cost_allow": 8.840415717953748,
+      "estimated_cost_verify": 8.17938386584386,
+      "uplift": 0.6610318521098879,
+      "allow_completion_probability": 0.999893185216834,
+      "verify_completion_probability": 0.9777796260982566,
+      "incremental_abandonment_probability": 0.022113559118577375,
+      "context_source": "local",
+      "safety_override": false,
+      "personalization_applied": true,
+      "model_version": "synthetic-v3",
+      "persistence_source": "memory"
+    },
+    {
+      "scenario": "Same transaction: frequent prior abandonment",
+      "amount": 150,
+      "id": null,
+      "decision": "allow",
+      "risk_score": 0.06376471535390986,
+      "reason": "allow: verification's estimated benefit does not cover friction",
+      "estimated_cost_allow": 8.840415717953748,
+      "estimated_cost_verify": 10.235416427043837,
+      "uplift": -1.3950007090900893,
+      "allow_completion_probability": 0.999893185216834,
+      "verify_completion_probability": 0.8806791408823598,
+      "incremental_abandonment_probability": 0.11921404433447425,
+      "context_source": "local",
+      "safety_override": false,
+      "personalization_applied": true,
+      "model_version": "synthetic-v3",
+      "persistence_source": "memory"
+    },
+    {
+      "scenario": "Frequent abandonment: amount exceeds safety limit",
+      "amount": 1000,
+      "id": null,
+      "decision": "verify",
+      "risk_score": 0.28366693904190454,
+      "reason": "verify: independent risk, loss, amount or context safety limit",
+      "estimated_cost_allow": 280.69690460703373,
+      "estimated_cost_verify": 142.6109465784555,
+      "uplift": 138.08595802857823,
+      "allow_completion_probability": 0.999893185216834,
+      "verify_completion_probability": 0.38885593549206743,
+      "incremental_abandonment_probability": 0.6110372497247666,
+      "context_source": "local",
+      "safety_override": true,
+      "personalization_applied": true,
+      "model_version": "synthetic-v3",
+      "persistence_source": "memory"
+    }
+  ]
+}

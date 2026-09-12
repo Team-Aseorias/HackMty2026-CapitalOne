@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ancla-backend"
+version = "0.1.0"
+description = "Risk-aware purchase decision API"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.115,<1",
+  "uvicorn[standard]>=0.30,<1",
+  "pydantic>=2.0,<3",
+  "httpx>=0.27,<1",
+  "pymongo>=4.13,<5",
+  "python-dotenv>=1.0,<2",
+  "scikit-learn>=1.5,<2",
+  "numpy>=2,<3",
+  "scipy>=1.14,<2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "build>=1,<2"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.setuptools.packages.find]
+include = ["app*"]

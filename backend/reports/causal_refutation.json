@@ -1,0 +1,30 @@
+{
+  "source": "synthetic randomized legitimate purchases",
+  "estimator": "difference in means; treatment assignment probability = 0.5",
+  "framework": "custom numpy permutation/bootstrap; DoWhy not installed or used",
+  "seed": 4100,
+  "n": 4732,
+  "repetitions": 300,
+  "abandonment_ate_verify_minus_allow": 0.08740254411161263,
+  "bootstrap_95_ci": [
+    0.07617646670190274,
+    0.0992929018868643
+  ],
+  "placebo_mean_effect": -0.00006139672544043127,
+  "placebo_95_interval": [
+    -0.011587696219234514,
+    0.01254646280159807
+  ],
+  "permutation_p_value": 0.0033222591362126247,
+  "random_common_cause_effect": 0.08740818294637503,
+  "subset_80_percent_95_interval": [
+    0.08148322215484133,
+    0.09287300021560592
+  ],
+  "caveats": [
+    "Simulator generates the relationship being tested; this is a pipeline sanity check.",
+    "Average treatment effects do not validate individual treatment-effect estimates.",
+    "Real observational logs require confounder adjustment, overlap and measured propensities.",
+    "Unobserved confounding is absent from assignment in this randomized experiment."
+  ]
+}
