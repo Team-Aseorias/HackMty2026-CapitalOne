@@ -1,10 +1,22 @@
 from __future__ import annotations
 
+import logging
 from copy import deepcopy
 from datetime import datetime, timezone
 from uuid import uuid4
 
 from app.db.mongo import DECISIONS, get_database, get_db
+
+logger = logging.getLogger(__name__)
+
+
+def _log_mongo_failure(operation: str, exc: Exception) -> None:
+    """Report degraded persistence without logging documents or credentials."""
+    logger.warning(
+        "MongoDB %s failed; continuing with in-memory fallback (%s)",
+        operation,
+        type(exc).__name__,
+    )
 
 
 class DecisionRepository:
@@ -37,9 +49,9 @@ class DecisionRepository:
                 await collection.replace_one(
                     {"id": record["id"]}, deepcopy(record), upsert=True
                 )
-        except Exception:
+        except Exception as exc:
             # A persistence outage must not block a real-time authorization.
-            pass
+            _log_mongo_failure("decision write", exc)
         return deepcopy(record)
 
     async def get(self, decision_id: str) -> dict | None:
@@ -53,8 +65,8 @@ class DecisionRepository:
                 if record:
                     self._records[decision_id] = record
                     return deepcopy(record)
-        except Exception:
-            pass
+        except Exception as exc:
+            _log_mongo_failure("decision lookup", exc)
         return None
 
     async def update(self, decision_id: str, values: dict) -> dict | None:
@@ -70,8 +82,8 @@ class DecisionRepository:
                 await collection.update_one(
                     {"id": decision_id}, {"$set": deepcopy(values)}
                 )
-        except Exception:
-            pass
+        except Exception as exc:
+            _log_mongo_failure("decision update", exc)
         return deepcopy(record)
 
     async def recent(self, limit: int = 25) -> list[dict]:
@@ -85,8 +97,8 @@ class DecisionRepository:
                     .limit(limit)
                 ]
                 return [record for record in records if record is not None]
-        except Exception:
-            pass
+        except Exception as exc:
+            _log_mongo_failure("recent decisions query", exc)
         return [
             deepcopy(record)
             for record in list(self._records.values())[-limit:]
@@ -107,8 +119,8 @@ class DecisionRepository:
                     .limit(limit)
                 ]
                 return [record for record in records if record is not None]
-        except Exception:
-            pass
+        except Exception as exc:
+            _log_mongo_failure("account purchase history query", exc)
         records = [
             record
             for record in self._records.values()
@@ -136,8 +148,8 @@ class DecisionRepository:
                     .limit(limit)
                 ]
                 return [record for record in records if record is not None]
-        except Exception:
-            pass
+        except Exception as exc:
+            _log_mongo_failure("account decision history query", exc)
         records = [
             record
             for record in self._records.values()

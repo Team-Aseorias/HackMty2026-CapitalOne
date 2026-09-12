@@ -20,6 +20,13 @@ accepted during migration.
 When Mongo is available, startup creates indexes and the API stores raw attempts,
 decisions and outcomes in their corresponding collections.
 
+Known technical debt: the class-based repository used by the inference API and
+the functional repository API retained from the database feature share the
+`decisions` collection, but do not yet validate against one canonical document
+model. The live inference route writes the interoperability fields `id`,
+`attempt_id`, `action` and `created_at`; full schema normalization is deferred
+until after the demo.
+
 ## Nessie and causal decision flow
 
 Set `NESSIE_API_KEY` to use Capital One Nessie and send `merchant_id` with a
