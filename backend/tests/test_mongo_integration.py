@@ -11,13 +11,13 @@ def test_database_is_optional(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setattr(
         mongo,
         "settings",
-        SimpleNamespace(mongodb_uri="", mongodb_database="ancla"),
+        SimpleNamespace(mongo_uri="", mongo_db="ancla"),
     )
     monkeypatch.setattr(mongo, "_client", None)
 
     assert mongo.get_database() is None
     assert asyncio.run(mongo.ping()) is False
-    with pytest.raises(RuntimeError, match="MONGODB_URI"):
+    with pytest.raises(RuntimeError, match="MONGO_URI"):
         mongo.get_db()
 
 

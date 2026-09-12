@@ -15,12 +15,10 @@ if load_dotenv:
 class Settings:
     nessie_base_url: str = getenv("NESSIE_BASE_URL", "http://api.reimaginebanking.com")
     nessie_api_key: str = getenv("NESSIE_API_KEY", "")
-    # Keep the names used by the inference backend while accepting the shorter
-    # names from the database branch during migration.
-    mongodb_uri: str = getenv("MONGODB_URI") or getenv("MONGO_URI", "")
-    mongodb_database: str = (
-        getenv("MONGODB_DATABASE") or getenv("MONGO_DB") or "ancla"
-    )
+    # MONGO_* is canonical. MONGODB_* remains as a migration fallback so an
+    # existing deployment does not lose its database connection unexpectedly.
+    mongo_uri: str = getenv("MONGO_URI") or getenv("MONGODB_URI", "")
+    mongo_db: str = getenv("MONGO_DB") or getenv("MONGODB_DATABASE") or "ancla"
     fraud_cost: float = float(getenv("FRAUD_COST", "1000"))
     verify_cost: float = float(getenv("VERIFY_COST", "5"))
     abandonment_cost_rate: float = float(getenv("ABANDONMENT_COST_RATE", "0.15"))

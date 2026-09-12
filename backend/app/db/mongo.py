@@ -14,7 +14,7 @@ _client: Any | None = None
 
 
 def is_configured() -> bool:
-    return bool(settings.mongodb_uri)
+    return bool(settings.mongo_uri)
 
 
 def get_client() -> Any:
@@ -23,10 +23,10 @@ def get_client() -> Any:
 
     global _client
     if not is_configured():
-        raise RuntimeError("MONGODB_URI no está configurado en el entorno")
+        raise RuntimeError("MONGO_URI no está configurado en el entorno")
     if _client is None:
         _client = AsyncMongoClient(
-            settings.mongodb_uri,
+            settings.mongo_uri,
             tz_aware=True,
             serverSelectionTimeoutMS=5_000,
             appname="ancla-backend",
@@ -38,14 +38,14 @@ def get_database() -> Any | None:
     """Return the database when configured, preserving the local demo fallback."""
     if not is_configured():
         return None
-    return get_client()[settings.mongodb_database]
+    return get_client()[settings.mongo_db]
 
 
 def get_db() -> Any:
     """Strict accessor retained for DB repositories and smoke tests."""
     database = get_database()
     if database is None:
-        raise RuntimeError("MONGODB_URI no está configurado en el entorno")
+        raise RuntimeError("MONGO_URI no está configurado en el entorno")
     return database
 
 

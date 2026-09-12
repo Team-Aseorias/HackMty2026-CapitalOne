@@ -16,7 +16,7 @@ async def main():
     ok = await ping()
     print(f"   Ping ok: {ok}")
     if not ok:
-        print("   ❌ No se pudo conectar. Revisa MONGODB_URI (o MONGO_URI), whitelist de IP y password URL-encodeado.")
+        print("   ❌ No se pudo conectar. Revisa MONGO_URI, whitelist de IP y password URL-encodeado.")
         return
 
     print("2. Creando índices...")
