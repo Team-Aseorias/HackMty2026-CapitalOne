@@ -1,4 +1,4 @@
-"""ANCLA recommends actions and consumes feedback; it does not verify buyers."""
+"""ANCLA recommends actions and consumes feedback; it does not move money."""
 import asyncio
 from types import SimpleNamespace
 
@@ -8,7 +8,6 @@ import pytest
 from app.core.security import require_api_key
 from app.main import app
 from app.repositories import decision_repository
-from app.repositories.nessie_repository import NessieRepository
 from app.routers import decisions
 from app.services.decision_service import DecisionService
 from app.services.risk_service import RiskService
@@ -48,18 +47,17 @@ def test_completion_is_only_feedback(monkeypatch, action):
     monkeypatch.setattr(decisions, "is_configured", lambda: False)
     monkeypatch.setitem(app.dependency_overrides, require_api_key, lambda: None)
 
-    async def forbidden_purchase(*args, **kwargs):
-        pytest.fail("Feedback must never execute a purchase")
-
-    monkeypatch.setattr(NessieRepository, "create_purchase", forbidden_purchase)
-
     async def scenario():
-        await repository().save({"id": "d1", "action": action, "outcome": "pending"})
+        await repository().save({
+            "id": "d1", "action": action, "outcome": "pending",
+        })
         async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app), base_url="http://test") as client:
             first = await client.post("/decisions/d1/complete")
             assert first.status_code == 200
             assert first.json()["outcome"] == "completed"
             assert first.json()["outcome_source"] == "consumer_report"
+            assert "purchase_source" not in first.json()
+            assert "purchase_id" not in first.json()
             assert (await client.post("/decisions/d1/complete")).status_code == 200
             assert (await client.post("/decisions/d1/abandon")).status_code == 409
             assert (await client.post("/decisions/d1/verification")).status_code == 404

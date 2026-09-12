@@ -13,7 +13,7 @@ if load_dotenv:
 
 @dataclass(frozen=True)
 class Settings:
-    nessie_base_url: str = getenv("NESSIE_BASE_URL", "http://api.reimaginebanking.com")
+    nessie_base_url: str = getenv("NESSIE_BASE_URL", "https://api.nessieisreal.com")
     nessie_api_key: str = getenv("NESSIE_API_KEY", "")
     # MONGO_* is canonical. MONGODB_* remains as a migration fallback so an
     # existing deployment does not lose its database connection unexpectedly.

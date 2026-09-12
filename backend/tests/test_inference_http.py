@@ -22,18 +22,16 @@ def test_inference_feedback_and_metrics_without_external_writes(monkeypatch, pro
     monkeypatch.setattr(decisions, "is_configured", lambda: False)
     monkeypatch.setitem(app.dependency_overrides, require_api_key, lambda: None)
 
-    async def context(self, account_id):
+    async def context(self, account_id, merchant_id=None):
         if not provider_available:
             raise NessieError("Simulated outage")
-        return {"customer_id": "c1", "open_date": "2025-01-01"}, [
-            {"amount": 20, "merchant": "shop", "purchase_date": "2026-01-01"},
-        ]
+        return (
+            {"customer_id": "c1", "open_date": "2025-01-01"},
+            {"_id": "c1"},
+            {"_id": merchant_id} if merchant_id else None,
+        )
 
-    async def forbidden_purchase(*args, **kwargs):
-        pytest.fail("Inference may not create a purchase")
-
-    monkeypatch.setattr(NessieRepository, "context_for_account", context)
-    monkeypatch.setattr(NessieRepository, "create_purchase", forbidden_purchase)
+    monkeypatch.setattr(NessieRepository, "context_for_attempt", context)
 
     async def scenario():
         async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app), base_url="http://test") as client:

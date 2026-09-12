@@ -44,6 +44,8 @@ class DecisionRepository:
             return None
         clean_document = deepcopy(document)
         clean_document.pop("_id", None)
+        # This helper is used only for documents actually read from Mongo.
+        clean_document["persistence_source"] = "mongo"
         return clean_document
 
     async def save(self, decision: dict) -> dict:
@@ -55,6 +57,7 @@ class DecisionRepository:
         try:
             collection = self._collection()
             if collection is not None:
+                record["persistence_source"] = "mongo"
                 await collection.replace_one(
                     {"id": record["id"]}, deepcopy(record), upsert=True
                 )

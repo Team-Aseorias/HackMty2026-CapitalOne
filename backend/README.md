@@ -36,13 +36,13 @@ until after the demo.
 ## Nessie and causal decision flow
 
 Set `NESSIE_API_KEY` to use Capital One Nessie and send `merchant_id` with a
-purchase attempt. `POST /purchase-attempts` reads the account and its purchase
-history first, builds only pre-decision features, and returns the action with
-the lowest estimated cost within configured risk limits.
-`POST /decisions/{id}/complete` and `/abandon` only record outcomes reported by
-the consuming application. They never create a Nessie purchase or require
-verification inside ANCLA. These outcomes feed the account's future
-abandonment estimates. Nessie is used for read-only account/purchase context.
+purchase attempt. `POST /purchase-attempts` validates the account, its customer
+and the merchant through documented, read-only Nessie routes. Purchase and
+decision history comes from ANCLA's Mongo store because the current Nessie
+OpenAPI exposes neither purchase listing nor purchase creation.
+`POST /decisions/{id}/complete` and `/abandon` record outcomes reported by the
+consuming application; ANCLA does not substitute a deposit or withdrawal for a
+purchase. These outcomes feed future abandonment estimates.
 
 The conditional-outcome learner fits separate `allow` and `verify` arms on
 randomized synthetic observations. Each arm separately learns fraud success

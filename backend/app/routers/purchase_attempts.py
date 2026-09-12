@@ -25,15 +25,19 @@ async def create_purchase_attempt(attempt: PurchaseAttemptIn) -> DecisionOut:
     attempt_id = str(uuid4())
     created_at = datetime.now(timezone.utc)
     decision_history = await repository.decision_history_for_account(attempt.account_id)
+    history = await repository.history_for_account(attempt.account_id)
     source = "nessie"
     try:
-        account, history = await NessieRepository().context_for_account(attempt.account_id)
-        if account.get("customer_id") != attempt.customer_id:
+        account, customer, merchant = await NessieRepository().context_for_attempt(
+            attempt.account_id, attempt.merchant_id
+        )
+        customer_id = str(customer.get("_id") or customer.get("id") or "")
+        if account.get("customer_id") != attempt.customer_id or customer_id != attempt.customer_id:
             raise HTTPException(403, "Account does not belong to the supplied customer")
+        if attempt.merchant_id and str((merchant or {}).get("_id") or (merchant or {}).get("id")) != attempt.merchant_id:
+            raise HTTPException(422, "Merchant could not be validated")
     except NessieError:
-        # Nessie is simulation data, not the system of record for abandoned
-        # attempts.  Keep the demo usable and label this fallback in the API.
-        account, history, source = {}, await repository.history_for_account(attempt.account_id), "local"
+        account, source = {}, "local"
     decision = await run_in_threadpool(
         PurchaseService().assess_with_context,
         attempt, history, account, decision_history,

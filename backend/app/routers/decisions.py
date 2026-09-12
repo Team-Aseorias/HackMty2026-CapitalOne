@@ -1,7 +1,7 @@
 """Decision queries and outcome feedback supplied by the consuming application.
 
-ANCLA recommends allow/verify. The consumer performs any verification and
-purchase; these endpoints only record its reported completion/abandonment.
+Nessie's current documented API has no purchase-creation route. ANCLA records
+the caller's completion or abandonment and performs no substitute transaction.
 """
 import logging
 from datetime import datetime, timezone
@@ -71,7 +71,7 @@ async def get_decision(decision_id: str) -> dict:
 
 @router.post("/{decision_id}/complete")
 async def complete_decision(decision_id: str) -> dict:
-    """Record completion reported by the consumer; never execute a purchase."""
+    """Record completion reported by the consumer; no transaction is created."""
     return await _record_outcome(decision_id, "completed")
 
 
