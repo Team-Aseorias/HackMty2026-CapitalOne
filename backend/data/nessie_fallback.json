@@ -1,0 +1,41 @@
+{
+  "accounts": {
+    "acc_rosa": {
+      "_id": "acc_rosa",
+      "type": "Checking",
+      "nickname": "Cuenta Rosa",
+      "balance": 4500,
+      "customer_id": "cus_rosa",
+      "rewards": 100,
+      "account_number": "0000000001"
+    }
+  },
+  "customers": {
+    "cus_rosa": {
+      "_id": "cus_rosa",
+      "first_name": "Rosa",
+      "last_name": "Martínez",
+      "address": {
+        "street_name": "Av. Constitución",
+        "city": "Monterrey",
+        "state": "NL",
+        "zip": "64000"
+      }
+    }
+  },
+  "merchants": {
+    "mer_farmacia": {
+      "_id": "mer_farmacia",
+      "name": "Farmacias del Ahorro",
+      "category": ["Pharmacy"],
+      "address": {"city": "Monterrey", "state": "NL"}
+    },
+    "mer_super": {
+      "_id": "mer_super",
+      "name": "Soriana",
+      "category": ["Grocery"],
+      "address": {"city": "Monterrey", "state": "NL"}
+    }
+  },
+  "purchases": {}
+}
