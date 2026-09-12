@@ -27,6 +27,7 @@ interface Decision {
 interface DecisionPanelProps {
     decision?: Decision
     onViewEvaluation?: () => void
+    onViewFeed?: () => void
 }
 
 const mockDecision: Decision = {
@@ -59,6 +60,7 @@ const mockDecision: Decision = {
 export default function DecisionPanel({
     decision = mockDecision,
     onViewEvaluation,
+    onViewFeed,
 }: DecisionPanelProps) {
     const riskPercentage = Math.round(decision.fraudRisk * 100)
     const confidence = Math.round((1 - decision.uncertainty) * 100)
@@ -195,7 +197,7 @@ export default function DecisionPanel({
                 <p>Incertidumbre estimada: {Math.round(decision.uncertainty * 100)}%</p>
             </section>
 
-            <section className="decision-next-step">
+           <section className="decision-next-step">
                 <div>
                     <span className="section-label">SIGUIENTE PASO</span>
                     <h3>¿Cómo se comporta ANCLA frente a otras políticas?</h3>
@@ -205,15 +207,28 @@ export default function DecisionPanel({
                     </p>
                 </div>
 
-                {onViewEvaluation && (
-                    <button
-                        type="button"
-                        className="evaluation-link-button"
-                        onClick={onViewEvaluation}
-                    >
-                        Ver evaluación de políticas →
-                    </button>
-                )}
+                {/* Contenedor para que los botones queden uno al lado del otro */}
+                <div style={{ display: 'flex', gap: '15px', flexWrap: 'wrap' }}>
+                    {onViewFeed && (
+                        <button
+                            type="button"
+                            className="evaluation-link-button"
+                            style={{ backgroundColor: '#000000', color: '#ffffff' }} // Botón en negro para diferenciarlo
+                            onClick={onViewFeed}
+                        >
+                            Ver historial (Feed)
+                        </button>
+                    )}
+                    {onViewEvaluation && (
+                        <button
+                            type="button"
+                            className="evaluation-link-button"
+                            onClick={onViewEvaluation}
+                        >
+                            Ver evaluación de políticas →
+                        </button>
+                    )}
+                </div>
             </section>
 
             <footer className="demo-warning">

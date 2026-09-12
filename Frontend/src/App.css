@@ -1,184 +1,203 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
-
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
+body, html, #root {
+  background-color: #ffffff !important;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
 }
 
-.hero {
-  position: relative;
-
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
-}
-
-#center {
+.app-shell {
+  min-height: 100vh;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
+  align-items: center;
+  padding: 50px 20px;
 }
 
-#next-steps {
+.app-layout {
   display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
-
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
-
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
-}
-
-#next-steps ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
-}
-
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
-}
-
-.ticks {
-  position: relative;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
   width: 100%;
+  max-width: 1200px;
+  min-height: calc(100vh - 100px);
+}
 
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
+.app-content-zone {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.btn-volver-simulador {
+  margin-top: 20px;
+  padding: 12px 24px;
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.ancla-brand-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 60px;
+  min-width: 0;
+}
+
+.ancla-triangle-motion {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s ease-out;
+}
+
+.ancla-triangle-intro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: 50% 50%;
+  animation-name: anclaTriangleIntro;
+  animation-duration: 1.65s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  animation-delay: 0s;
+  animation-fill-mode: both;
+  animation-iteration-count: 1;
+  will-change: transform;
+}
+
+.ancla-triangle {
+  width: 0;
+  height: 0;
+  border-top: 25px solid transparent;
+  border-bottom: 25px solid transparent;
+  border-right: 40px solid #e11d48;
+  flex: 0 0 auto;
+}
+
+.ancla-copy {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.ancla-copy h1 {
+  margin: 0;
+  color: #000000;
+  font-size: 100px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.ancla-copy p {
+  margin: 20px 0 0;
+  color: #000000;
+  font-size: 28px;
+  line-height: 1.25;
+  max-width: 450px;
+}
+
+.ancla-copy-intro {
+  animation-name: anclaTextIntro;
+  animation-duration: 1.35s;
+  animation-timing-function: ease-out;
+  animation-delay: 0.25s;
+  animation-fill-mode: both;
+  animation-iteration-count: 1;
+  will-change: opacity, transform;
+}
+
+@keyframes anclaTriangleIntro {
+  0% {
+    transform: rotate(90deg);
   }
 
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
+  18% {
+    transform: rotate(90deg);
   }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes anclaTextIntro {
+  0% {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+
+  20% {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+@media (max-width: 900px) {
+  .app-layout {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .ancla-brand-wrap {
+    width: 100%;
+    justify-content: center;
+    gap: 30px;
+  }
+
+  .ancla-copy {
+    flex: 0 1 auto;
+  }
+
+  .ancla-copy h1 {
+    font-size: 68px;
+  }
+
+  .ancla-copy p {
+    font-size: 21px;
+  }
+}
+
+@media (max-width: 560px) {
+  .app-shell {
+    padding: 30px 16px;
+  }
+
+  .ancla-brand-wrap {
+    gap: 20px;
+  }
+
+  .ancla-triangle {
+    border-top-width: 18px;
+    border-bottom-width: 18px;
+    border-right-width: 29px;
+  }
+
+  .ancla-copy h1 {
+    font-size: 48px;
+  }
+
+  .ancla-copy p {
+    margin-top: 12px;
+    font-size: 17px;
   }
 }

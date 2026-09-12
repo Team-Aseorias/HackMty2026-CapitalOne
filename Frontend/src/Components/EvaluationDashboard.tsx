@@ -78,9 +78,13 @@ export default function EvaluationDashboard({ onBack }: EvaluationDashboardProps
     return (
         <main className="evaluation-page">
             <header className="evaluation-header">
-                <div>
-                    <span className="evaluation-brand">ANCLA</span>
-                    <p>Evaluación de políticas · conjunto de prueba separado</p>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+                    <h1 style={{ fontSize: '50px', fontWeight: 'bold', color: '#000000', margin: 0, lineHeight: '1' }}>
+                        ANCLA
+                    </h1>
+                    <p style={{ color: '#000000', marginTop: '8px', fontSize: '16px', maxWidth: '450px', margin: '8px 0 0 0' }}>
+                        Evaluación de políticas · conjunto de prueba separado
+                    </p>
                 </div>
 
                 {onBack && (

@@ -1,81 +1,130 @@
-.feed-container {
-  width: 100%;
-  max-width: 800px;
-  padding: 30px;
-  background-color: #ffffff;
-  border: 2px solid #000000; /* Delineado negro fuerte */
-  border-radius: 20px;
-  color: #000000;
-  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  margin-top: 40px;
+:root {
+    --ancla-black: #000000;
+    --ancla-red: #e11d48;
+    --ancla-white: #ffffff;
 }
 
-.feed-titulo {
-  font-size: 24px;
-  font-weight: bold;
-  color: #e11d48; /* Rojo ANCLA */
-  margin-bottom: 20px;
-  margin-top: 0;
-  border-bottom: 2px solid #000000;
-  padding-bottom: 15px;
+.feed-page {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 40px 64px;
+    box-sizing: border-box;
+    color: var(--ancla-black);
+    background-color: var(--ancla-white);
+}
+
+.feed-page::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, var(--ancla-black) 0 70%, var(--ancla-red) 70% 100%);
+    z-index: 20;
+}
+
+.feed-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    padding: 28px 0 20px;
+    border-bottom: 2px solid var(--ancla-black);
+    margin-bottom: 40px;
+}
+
+.back-button {
+    border: 2px solid var(--ancla-black);
+    border-radius: 7px;
+    background: var(--ancla-white);
+    color: var(--ancla-black);
+    padding: 10px 14px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.back-button:hover {
+    box-shadow: 4px 4px 0px var(--ancla-black);
+    transform: translateY(-2px);
 }
 
 .feed-lista {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .feed-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 20px;
-  border: 1px solid #000000; /* Borde negro para cada fila */
-  border-radius: 12px;
-  background-color: #ffffff;
-  transition: transform 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border: 2px solid var(--ancla-black);
+    border-radius: 12px;
+    background-color: var(--ancla-white);
+    transition: transform 160ms ease, box-shadow 160ms ease;
 }
 
 .feed-item:hover {
-  transform: translateX(5px); /* Pequeño efecto al pasar el mouse */
+    box-shadow: 4px 4px 0px var(--ancla-black);
+    transform: translateY(-2px);
 }
 
 .feed-item-info strong {
-  display: block;
-  font-size: 18px;
-  margin-bottom: 4px;
+    display: block;
+    font-size: 18px;
+    font-weight: 900;
+    margin-bottom: 4px;
 }
 
 .feed-item-info span {
-  font-size: 14px;
-  color: #555555; /* Gris oscuro para detalles */
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ancla-black);
 }
 
-/* Insignias de estado (Badges) */
 .feed-badge {
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 14px;
-  font-weight: bold;
-  text-align: center;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 900;
+    text-align: center;
+    border: 2px solid var(--ancla-black);
+    text-transform: uppercase;
 }
 
 .badge-allow {
-  background-color: #ffffff;
-  color: #000000;
-  border: 2px solid #000000;
+    background-color: var(--ancla-white);
+    color: var(--ancla-black);
 }
 
 .badge-verify-success {
-  background-color: #000000;
-  color: #ffffff;
+    background-color: var(--ancla-black);
+    color: var(--ancla-white);
 }
 
 .badge-verify-abandoned {
-  background-color: #e11d48;
-  color: #ffffff;
+    background-color: var(--ancla-red);
+    color: var(--ancla-white);
+}
+
+@media (max-width: 700px) {
+    .feed-page {
+        padding: 0 15px 40px;
+    }
+    .feed-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .feed-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
 }

@@ -2,12 +2,15 @@ import { useState, useEffect } from 'react';
 import { obtenerDecisionesRecientes, type DecisionRecord } from '../services/api';
 import './FeedReciente.css';
 
-export default function FeedReciente() {
+interface FeedProps {
+  onBack?: () => void;
+}
+
+export default function FeedReciente({ onBack }: FeedProps) {
   const [decisions, setDecisions] = useState<DecisionRecord[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Función que pide los datos al cargar la página
     const fetchDecisions = async () => {
       try {
         const data = await obtenerDecisionesRecientes();
@@ -20,32 +23,38 @@ export default function FeedReciente() {
     };
 
     fetchDecisions();
-    
-    // Opcional: Esto hace que se actualice solo cada 5 segundos (Tiempo real)
     const interval = setInterval(fetchDecisions, 5000);
     return () => clearInterval(interval);
   }, []);
 
-  // Función para determinar cómo se ve la etiqueta según la decisión y el estado
   const renderBadge = (action: string, status: string) => {
-    if (action === 'allow') {
-      return <div className="feed-badge badge-allow">Permitida Automáticamente</div>;
-    }
-    if (action === 'verify' && status === 'SUCCESS') {
-      return <div className="feed-badge badge-verify-success">Verificación Exitosa</div>;
-    }
-    if (action === 'verify' && status === 'ABANDONED') {
-      return <div className="feed-badge badge-verify-abandoned">Verificación Abandonada</div>;
-    }
+    if (action === 'allow') return <div className="feed-badge badge-allow">Permitida</div>;
+    if (action === 'verify' && status === 'SUCCESS') return <div className="feed-badge badge-verify-success">Exitosa</div>;
+    if (action === 'verify' && status === 'ABANDONED') return <div className="feed-badge badge-verify-abandoned">Abandonada</div>;
     return <div className="feed-badge">Pendiente</div>;
   };
 
   return (
-    <div className="feed-container">
-      <h2 className="feed-titulo">Historial Operativo (Feed)</h2>
+    <main className="feed-page">
+      <header className="feed-header">
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+          <h1 style={{ fontSize: '50px', fontWeight: 'bold', color: '#000000', margin: 0, lineHeight: '1' }}>
+            ANCLA
+          </h1>
+          <p style={{ color: '#000000', marginTop: '8px', fontSize: '16px', maxWidth: '450px', margin: '8px 0 0 0', fontWeight: 600 }}>
+            Historial Operativo (Feed en vivo)
+          </p>
+        </div>
+        
+        {onBack && (
+          <button type="button" className="back-button" onClick={onBack}>
+            ← Volver al panel de decisión
+          </button>
+        )}
+      </header>
       
       {loading && decisions.length === 0 ? (
-        <p style={{ textAlign: 'center', fontWeight: 'bold' }}>Cargando transacciones...</p>
+        <p style={{ textAlign: 'center', fontWeight: '900', fontSize: '18px' }}>Cargando transacciones...</p>
       ) : (
         <ul className="feed-lista">
           {decisions.map((decision) => (
@@ -61,6 +70,6 @@ export default function FeedReciente() {
           ))}
         </ul>
       )}
-    </div>
+    </main>
   );
 }

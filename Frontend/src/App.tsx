@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import SimuladorCompra from './components/SimuladorCompra';
 import FeedReciente from './components/FeedReciente';
 import DecisionPanel from './components/DecisionPanel';
 import EvaluationDashboard from './components/EvaluationDashboard';
-import './app.css';
+import './App.css';
 
 type Screen = 'simulador' | 'feed' | 'decision' | 'evaluation';
 
-function App() {
+export default function App() {
   const [vistaActiva, setVistaActiva] = useState<Screen>('simulador');
   const [desplazamientoY, setDesplazamientoY] = useState(0);
 
@@ -17,96 +17,70 @@ function App() {
       const distancia = e.clientY - centroPantalla;
       setDesplazamientoY(distancia * 0.3);
     };
+
     window.addEventListener('mousemove', rastrearMouse);
     return () => window.removeEventListener('mousemove', rastrearMouse);
   }, []);
 
+  // 1. PANTALLA DE EVALUACIÓN
   if (vistaActiva === 'evaluation') {
-    return <EvaluationDashboard onBack={() => setVistaActiva('simulador')} />;
+    return (
+      <div style={{ backgroundColor: '#ffffff', minHeight: '100vh', width: '100%' }}>
+        <EvaluationDashboard onBack={() => setVistaActiva('decision')} />
+      </div>
+    );
   }
 
+  // 2. PANTALLA DEL HISTORIAL (FEED)
+  if (vistaActiva === 'feed') {
+    return (
+      <div style={{ backgroundColor: '#ffffff', minHeight: '100vh', width: '100%' }}>
+        <FeedReciente onBack={() => setVistaActiva('decision')} />
+      </div>
+    );
+  }
+
+  // 3. PANTALLA DEL PANEL DE DECISIÓN
+  if (vistaActiva === 'decision') {
+    return (
+      <div style={{ backgroundColor: '#ffffff', minHeight: '100vh', width: '100%' }}>
+        <DecisionPanel 
+          onViewEvaluation={() => setVistaActiva('evaluation')} 
+          onViewFeed={() => setVistaActiva('feed')} 
+        />
+      </div>
+    );
+  }
+
+  // 4. PANTALLA PRINCIPAL (SIMULADOR + LOGO ANIMADO)
   return (
-    <div style={{ 
-      minHeight: '100vh', 
-      backgroundColor: '#ffffff', 
-      display: 'flex', 
-      flexDirection: 'column',
-      alignItems: 'center', 
-      padding: '50px 20px',
-    }}>
-      
-      <div style={{ 
-        display: 'flex', 
-        flexDirection: 'row', 
-        alignItems: 'center', 
-        justifyContent: 'center', 
-        gap: '60px',
-        width: '100%',
-        maxWidth: '1200px'
-      }}>
+    <div className="app-shell">
+      <div className="app-layout">
         
-        {/* ZONA DE CONTENIDO: Se expandirá cuando el logo desaparezca */}
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
-          
-          {vistaActiva === 'simulador' && (
-            <SimuladorCompra onComprar={() => setVistaActiva('decision')} />
-          )}
-
-          {vistaActiva === 'decision' && (
-            <DecisionPanel onViewEvaluation={() => setVistaActiva('evaluation')} />
-          )}
-
-          {vistaActiva === 'feed' && (
-            <>
-              <FeedReciente />
-              <button 
-                onClick={() => setVistaActiva('simulador')}
-                style={{
-                  marginTop: '20px',
-                  padding: '12px 24px',
-                  backgroundColor: '#000000',
-                  color: '#ffffff',
-                  border: 'none',
-                  borderRadius: '12px',
-                  cursor: 'pointer',
-                  fontWeight: 'bold',
-                  fontSize: '16px'
-                }}
-              >
-                ← Volver al Simulador
-              </button>
-            </>
-          )}
-
+        {/* Zona Izquierda: Formulario de compra */}
+        <div className="app-content-zone">
+          <SimuladorCompra onComprar={() => setVistaActiva('decision')} />
         </div>
 
-        {/* ZONA DERECHA Y TRIÁNGULO: Se ocultan completamente al entrar a 'decision' */}
-        {vistaActiva !== 'decision' && (
-          <>
-            <div style={{ 
-              transform: `translateY(${desplazamientoY}px)`, 
-              transition: 'transform 0.1s ease-out' 
-            }}>
-              <div className="triangulo-animado">
-                <div style={{ width: 0, height: 0, borderTop: '25px solid transparent', borderBottom: '25px solid transparent', borderRight: '40px solid #e11d48' }}></div>
-              </div>
+        {/* Zona Derecha: Logo y triángulo con animación de entrada */}
+        <div className="ancla-brand-wrap">
+          <div
+            className="ancla-triangle-motion"
+            style={{ transform: `translateY(${desplazamientoY}px)` }}
+            aria-hidden="true"
+          >
+            <div className="ancla-triangle-intro">
+              <div className="ancla-triangle" />
             </div>
-            
-            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-              <h1 style={{ fontSize: '100px', fontWeight: 'bold', color: '#000000', margin: 0, lineHeight: '1' }}>
-                ANCLA
-              </h1>
-              <p style={{ color: '#000000', marginTop: '20px', fontSize: '28px', maxWidth: '450px' }}>
-                Motor de decisión de fricción anti-fraude
-              </p>
-            </div>
-          </>
-        )}
+          </div>
+
+          <div className="ancla-copy ancla-copy-intro">
+            <h1>ANCLA</h1>
+            <p>Motor de decisión de fricción anti-fraude</p>
+          </div>
+        </div>
 
       </div>
-
     </div>
   );
 }
-
-export default App;
