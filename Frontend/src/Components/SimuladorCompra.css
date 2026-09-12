@@ -1,0 +1,101 @@
+/* Contenedor principal: Más ancho y sin margen automático */
+.simulador-card {
+  width: 100%;
+  max-width: 550px; /* Aumentamos de 420px a 550px */
+  padding: 40px; /* Más espacio interno */
+  background-color: #ffffff;
+  border-radius: 30px; 
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  color: #000000;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.simulador-titulo {
+  text-align: center;
+  font-size: 32px; /* Título más grande */
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #e11d48;
+}
+
+/* Estilos para el formulario */
+.grupo-input {
+  margin-bottom: 25px;
+}
+
+.etiqueta {
+  display: block;
+  font-size: 18px; /* Preguntas más grandes */
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: #000000;
+}
+
+.campo-texto {
+  width: 100%;
+  padding: 16px 20px; /* Campos de texto más altos */
+  border: 2px solid #000000;
+  border-radius: 12px;
+  background-color: #ffffff;
+  color: #000000;
+  font-size: 18px; /* Texto interno más grande */
+  outline: none;
+  transition: border-color 0.3s;
+  box-sizing: border-box; 
+}
+
+.btn-comprar {
+  width: 100%;
+  padding: 18px; /* Botón más grande */
+  background-color: #e11d48;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 20px; /* Letra del botón más grande */
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.btn-comprar:hover {
+  background-color: #be123c; /* Rojo un poco más oscuro al pasar el mouse */
+  transform: translateY(-2px); 
+}
+
+.panel-alerta {
+  background-color: #ffffff; /* Fondo blanco */
+  color: #000000; /* Texto en negro */
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid #000000; /* Borde negro general */
+  border-left: 5px solid #e11d48; /* Borde izquierdo grueso en rojo principal */
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.contenedor-botones {
+  display: flex;
+  gap: 15px;
+}
+
+.btn-secundario {
+  flex: 1;
+  padding: 12px;
+  background-color: #000000; /* Botón secundario en negro como detalle */
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-exito {
+  flex: 1;
+  padding: 12px;
+  background-color: #e11d48; /* Botón de éxito en rojo principal */
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+}

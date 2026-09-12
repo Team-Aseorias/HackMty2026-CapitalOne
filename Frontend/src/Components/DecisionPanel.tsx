@@ -75,9 +75,14 @@ export default function DecisionPanel({
     return (
         <main className="decision-page">
             <header className="decision-header">
-                <div>
-                    <span className="brand">ANCLA</span>
-                    <p className="subtitle">Motor de decisión de fricción antifraude</p>
+                {/* APLICAMOS EL FORMATO DEL LOGO PRINCIPAL */}
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+                    <h1 style={{ fontSize: '50px', fontWeight: 'bold', color: '#000000', margin: 0, lineHeight: '1' }}>
+                        ANCLA
+                    </h1>
+                    <p style={{ color: '#000000', marginTop: '8px', fontSize: '16px', maxWidth: '450px', margin: '8px 0 0 0' }}>
+                        Motor de decisión de fricción anti-fraude
+                    </p>
                 </div>
 
                 <div className="decision-id">Decisión #{decision.id}</div>
