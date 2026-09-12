@@ -2,7 +2,10 @@ import logging
 from datetime import datetime, timezone
 from uuid import uuid4
 
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
+from starlette.concurrency import run_in_threadpool
+
+from app.core.config import settings
 
 from app.db.mongo import is_configured
 from app.repositories import attempt_repository
@@ -25,12 +28,16 @@ async def create_purchase_attempt(attempt: PurchaseAttemptIn) -> DecisionOut:
     source = "nessie"
     try:
         account, history = await NessieRepository().context_for_account(attempt.account_id)
+        if account.get("customer_id") != attempt.customer_id:
+            raise HTTPException(403, "Account does not belong to the supplied customer")
     except NessieError:
         # Nessie is simulation data, not the system of record for abandoned
         # attempts.  Keep the demo usable and label this fallback in the API.
         account, history, source = {}, await repository.history_for_account(attempt.account_id), "local"
-    decision = PurchaseService().assess_with_context(
-        attempt, history, account, decision_history
+    decision = await run_in_threadpool(
+        PurchaseService().assess_with_context,
+        attempt, history, account, decision_history,
+        context_available=bool(account or history),
     )
     if is_configured():
         attempt_document = {
@@ -42,7 +49,9 @@ async def create_purchase_attempt(attempt: PurchaseAttemptIn) -> DecisionOut:
         try:
             await attempt_repository.insert_attempt(attempt_document)
         except Exception as exc:
-            logger.warning("Could not persist purchase attempt: %s", exc)
+            logger.warning("Could not persist purchase attempt (%s)", type(exc).__name__)
+            if not settings.demo_mode:
+                raise HTTPException(503, "Purchase attempt storage unavailable")
     record = await repository.save({
         "attempt_id": attempt_id,
         **attempt.model_dump(mode="json"),
@@ -52,4 +61,7 @@ async def create_purchase_attempt(attempt: PurchaseAttemptIn) -> DecisionOut:
         "context_source": source,
         "outcome": "pending",
     })
-    return decision.model_copy(update={"id": record["id"], "context_source": source})
+    return decision.model_copy(update={
+        "id": record["id"], "context_source": source,
+        "persistence_source": record["persistence_source"],
+    })

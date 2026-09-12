@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: ancla-backend
+    runtime: python
+    rootDir: backend
+    branch: feature/models
+    buildCommand: pip install .
+    startCommand: python -m app.serve
+    healthCheckPath: /ready
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.10
+      - key: DEMO_MODE
+        value: "true"
+      - key: BACKEND_API_KEY
+        generateValue: true
+      - key: MONGO_URI
+        sync: false
+      - key: MONGO_DB
+        value: ancla
+      - key: NESSIE_API_KEY
+        sync: false

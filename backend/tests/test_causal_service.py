@@ -13,7 +13,7 @@ def test_verification_completion_is_personalized_from_prior_abandonment() -> Non
     friction_sensitive = features.build(
         attempt,
         [],
-        decision_history=[{"decision": "verify", "outcome": "abandoned"} for _ in range(12)],
+        decision_history=[{"decision": "verify", "outcome": "abandoned", "abandoned_at": "2025-01-01T12:00:00Z"} for _ in range(12)],
     )
     causal = CausalService()
     _, new_verify_completion = causal.completion_probabilities(new_customer)

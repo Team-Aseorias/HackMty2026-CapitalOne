@@ -74,8 +74,9 @@ async def ensure_indexes() -> None:
 
     await database[DECISIONS].create_index("id", unique=True)
     await database[DECISIONS].create_index([("created_at", -1)])
-    # Inference records created before the DB feature may lack an attempt id.
-    await database[DECISIONS].create_index("attempt_id", unique=True, sparse=True)
+    # Match the already-merged DB branch index definition. All new inference
+    # documents include attempt_id; do not silently replace an existing index.
+    await database[DECISIONS].create_index("attempt_id", unique=True)
 
     await database[PURCHASE_ATTEMPTS].create_index("id", unique=True)
     await database[PURCHASE_ATTEMPTS].create_index(

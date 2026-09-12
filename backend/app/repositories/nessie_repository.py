@@ -45,7 +45,10 @@ class NessieRepository:
             response.raise_for_status()
             return response.json() if response.content else {}
         except httpx.HTTPError as exc:
-            raise NessieError(f"Nessie {method} {path} failed: {exc}") from exc
+            # HTTP exception strings may contain the API key query parameter.
+            raise NessieError(f"Nessie {method} failed ({type(exc).__name__})") from exc
+        except ValueError as exc:
+            raise NessieError("Nessie returned invalid JSON") from exc
 
     async def get_account(self, account_id: str) -> dict:
         return await self._request("GET", f"accounts/{account_id}")
@@ -69,6 +72,8 @@ class NessieRepository:
 
     async def create_purchase(self, account_id: str, payload: dict) -> dict:
         merchant_id = payload.get("merchant_id")
+        if not self.api_key:
+            raise NessieNotConfigured("NESSIE_API_KEY is not configured")
         if not merchant_id:
             raise NessieError("merchant_id is required to create a Nessie purchase")
         nessie_payload = {
@@ -78,4 +83,9 @@ class NessieRepository:
             "amount": float(payload["amount"]),
             "description": payload.get("description", "ANCLA authorized purchase"),
         }
-        return await self._request("POST", f"accounts/{account_id}/purchases", nessie_payload)
+        result = await self._request("POST", f"accounts/{account_id}/purchases", nessie_payload)
+        purchase = result.get("objectCreated", result) if isinstance(result, dict) else {}
+        purchase_id = purchase.get("_id") or purchase.get("id")
+        if not purchase_id:
+            raise NessieError("Nessie did not return a purchase identifier")
+        return {**purchase, "id": str(purchase_id)}

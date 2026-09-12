@@ -3,7 +3,5 @@ from app.repositories.decision_repository import DecisionRepository
 
 
 class MetricsService:
-    def dashboard(self) -> DashboardMetrics:
-        # Kept synchronous for the existing lightweight dashboard contract.
-        # Operational counters can be served from Mongo aggregation in deploy.
-        return DashboardMetrics()
+    async def dashboard(self) -> DashboardMetrics:
+        return DashboardMetrics(**await DecisionRepository().metrics())
