@@ -14,7 +14,7 @@ from app.ml.train_causal import TLearner, fit_t_learner
 def _default_learner() -> TLearner:
     # In deployment replace this bootstrap with a versioned serialized artifact
     # trained from randomized/appropriately adjusted decision logs.
-    return fit_t_learner(generate_synthetic_data(rows=2_000))
+    return fit_t_learner(generate_synthetic_data(rows=12_000, seed=2026))
 
 
 class CausalService:
@@ -25,8 +25,11 @@ class CausalService:
         return (self.learner or _default_learner()).expected_costs(features)
 
     def completion_probabilities(self, features: dict) -> tuple[float, float]:
-        """P(authorized purchase completes) under allow and verify."""
+        """P(legitimate customer completes) under allow and verify."""
         return (self.learner or _default_learner()).completion_probabilities(features)
+
+    def predict(self, features: dict) -> tuple[float, float, float, float]:
+        return (self.learner or _default_learner()).predict_many([features])[0]
 
     def uplift(self, features: dict) -> float:
         """Estimated incremental benefit: E[cost|allow] - E[cost|verify]."""

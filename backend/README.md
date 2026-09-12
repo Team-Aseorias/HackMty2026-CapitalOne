@@ -2,6 +2,12 @@
 
 FastAPI service for assessing purchase attempts with risk, causal uplift and configurable fraud/friction costs.
 
+ANCLA is a recommendation service. It estimates how verification changes a
+user's likelihood of completing a purchase, and returns `allow` or `verify`
+subject to independent fraud-risk limits. The consuming application decides
+how to act on the recommendation and performs any verification or purchase.
+ANCLA does not execute or approve verification challenges.
+
 ## Run locally
 
 ```powershell
@@ -30,18 +36,63 @@ until after the demo.
 ## Nessie and causal decision flow
 
 Set `NESSIE_API_KEY` to use Capital One Nessie and send `merchant_id` with a
-purchase attempt. `POST /purchase-attempts` reads the account and its purchase
-history first, builds only pre-decision features, and returns the action with
-the lowest estimated cost. `POST /decisions/{id}/complete` is the only action
-that creates `POST /data/accounts/{account_id}/purchases` in Nessie.
+purchase attempt. `POST /purchase-attempts` validates the account, its customer
+and the merchant through documented, read-only Nessie routes. Purchase and
+decision history comes from ANCLA's Mongo store because the current Nessie
+OpenAPI exposes neither purchase listing nor purchase creation.
+`POST /decisions/{id}/complete` and `/abandon` record outcomes reported by the
+consuming application; ANCLA does not substitute a deposit or withdrawal for a
+purchase. These outcomes feed future abandonment estimates.
 
-The causal model is a two-model T-learner: one outcome model for randomized
-`allow` examples and one for randomized `verify` examples. Its uplift is
-`E[cost | allow, X] - E[cost | verify, X]`; positive values favor verification.
-It also estimates completion under each action. Previous verification outcomes
-for the account are smoothed into a friction-tolerance feature, so a customer
-who repeatedly abandons verification is not treated like a new customer.
+The conditional-outcome learner fits separate `allow` and `verify` arms on
+randomized synthetic observations. Each arm separately learns fraud success
+and voluntary abandonment among legitimate transactions. Regularized logistic
+models were selected using validation seed 2030; the training set contains
+12,000 rows (seed 2026). Uplift is `E[cost | allow, X] - E[cost | verify, X]`;
+positive values favor verification. Completion probabilities are conditional
+on a legitimate transaction, not approval probabilities.
+
+Previous completed/abandoned `verify` decisions with known outcome timestamps
+are smoothed into an abandonment-history proxy. At least three resolved
+observations are required for personalization. The learned abandonment
+coefficient is constrained nonnegative. Fraud heads exclude verification and
+abandonment history entirely. Future, unresolved and undated historical feedback
+is excluded. This proxy does not prove why an individual abandoned.
 The included simulator supplies randomized treatment and keeps potential
 outcomes only for held-out synthetic evaluation. If Nessie is unavailable, the
 API returns `context_source: "local"` and never implies a remote purchase was
 recorded.
+
+## Reproduce the inference audit
+
+From `backend`, after `pip install -e ".[dev]"`:
+
+```powershell
+python -m pytest tests -q -p no:cacheprovider
+python -m app.ml.compare_estimators
+python -m app.ml.audit_inference
+python -m app.ml.causal_refutation
+python -m app.ml.demo_inference
+```
+
+These commands are offline and print JSON; they do not connect to Mongo or Nessie.
+See [the measured results and pitch notes](reports/INFERENCE_VALIDATION.md).
+DoWhy is not a runtime dependency. The refutations here use NumPy permutation,
+bootstrap, data-subset and random-covariate checks; they are not DoWhy outputs.
+
+## Serving and policy limits
+
+`python -m app.serve` starts exactly one worker using `PORT` (default 8000).
+Models warm up at startup; `/ready` reports readiness. `DEMO_MODE=true` permits
+an in-memory fallback. In strict mode, Mongo and `BACKEND_API_KEY` are required.
+API consumers authenticate with `X-API-Key` when the backend key is configured.
+This authenticates the consuming service, not the buyer or a fraud challenge.
+
+The default demo safety gates recommend `verify` when predicted fraud risk is
+at least 0.15, estimated unverified fraud loss is at least 15 amount units, the
+purchase is at least 500 amount units, or usable account context is unavailable.
+They can be configured through `MAX_SOFT_RISK`, `MAX_SOFT_EXPECTED_LOSS` and
+`MAX_SOFT_AMOUNT`. These limits are demo assumptions, not production calibration.
+`FRAUD_COST` is retained only for legacy compatibility; current fraud loss scales
+with the purchase amount. No automatic model training from live consumer feedback
+is performed: training requires adjudicated fraud labels and valid treatment data.

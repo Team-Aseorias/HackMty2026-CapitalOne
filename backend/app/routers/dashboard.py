@@ -8,4 +8,4 @@ router = APIRouter(prefix="/dashboard", tags=["dashboard"])
 
 @router.get("/metrics", response_model=DashboardMetrics)
 async def metrics() -> DashboardMetrics:
-    return MetricsService().dashboard()
+    return await MetricsService().dashboard()

@@ -1,4 +1,4 @@
-"""Train the calibrated random-forest risk model used by :class:`RiskService`."""
+"""Train the regularized probability model used by RiskService."""
 
 from app.services.risk_service import _risk_model
 
