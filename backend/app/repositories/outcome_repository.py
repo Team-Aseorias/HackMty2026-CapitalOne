@@ -1,4 +1,4 @@
-# app/db/outcome_repository.py
+# app/repositories/outcome_repository.py
 from __future__ import annotations
 
 from app.db.mongo import get_db, OUTCOMES

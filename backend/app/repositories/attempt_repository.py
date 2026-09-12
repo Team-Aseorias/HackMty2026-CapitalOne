@@ -1,4 +1,4 @@
-# app/db/attempt_repository.py
+# app/repositories/attempt_repository.py
 from __future__ import annotations
 
 from app.db.mongo import get_db, PURCHASE_ATTEMPTS
