@@ -3,6 +3,7 @@ services:
     name: ancla-backend
     runtime: python
     rootDir: backend
+    plan: free
     branch: develop
     buildCommand: pip install .
     startCommand: python -m app.serve
@@ -17,7 +18,7 @@ services:
       - key: MONGO_URI
         sync: false
       - key: MONGO_DB
-        value: ancla
+        value: hackmty_capitalone
       - key: NESSIE_API_KEY
         sync: false
       - key: CORS_ORIGINS
