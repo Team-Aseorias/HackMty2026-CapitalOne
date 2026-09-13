@@ -11,7 +11,7 @@ export function createGateway(config: GatewayConfig) {
   return async function gateway(req: IncomingMessage, res: ServerResponse): Promise<boolean> {
     const send = (status: number, detail: string) => { res.writeHead(status, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' }); res.end(JSON.stringify({ detail })); };
     // Guard the whole demo, including the global account history.
-    if ((config.requireLogin || config.password) && !timingSafeEqual(digest(req.headers.authorization ?? ''), digest(expected))) {
+    if (config.requireLogin && !timingSafeEqual(digest(req.headers.authorization ?? ''), digest(expected))) {
       res.setHeader('WWW-Authenticate', 'Basic realm="ANCLA demo", charset="UTF-8"');
       send(401, 'Acceso restringido a la demo'); return true;
     }

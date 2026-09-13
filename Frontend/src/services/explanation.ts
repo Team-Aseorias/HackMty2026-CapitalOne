@@ -2,7 +2,7 @@ import { cost, percent } from './api';
 
 export function safetyExplanation(check: { code: string; observed: number; threshold: number }) {
   switch (check.code) {
-    case 'risk_limit': return 'Riesgo estimado ' + percent(check.observed) + ' ≥ límite ' + percent(check.threshold) + '.';
+    case 'risk_limit': return 'Riesgo estimado ' + percent(check.observed) + ' ≥ límite ' + percent(check.threshold) + ' y la pérdida esperada ya justifica la fricción de verificar.';
     case 'loss_limit': return 'Riesgo × importe = ' + cost(check.observed) + ', por encima o igual al límite de ' + cost(check.threshold) + '. Este cálculo usa el predictor de riesgo, distinto del modelo de costos.';
     case 'amount_limit': return 'Importe ' + cost(check.observed) + ' ≥ límite ' + cost(check.threshold) + '.';
     case 'missing_context': return 'No hay contexto de cuenta ni historial de compras utilizable.';
