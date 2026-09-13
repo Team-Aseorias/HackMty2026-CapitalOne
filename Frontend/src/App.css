@@ -1,0 +1,203 @@
+body, html, #root {
+  background-color: #ffffff !important;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.app-shell {
+  min-height: 100vh;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 20px;
+}
+
+.app-layout {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  width: 100%;
+  max-width: 1200px;
+  min-height: calc(100vh - 100px);
+}
+
+.app-content-zone {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.btn-volver-simulador {
+  margin-top: 20px;
+  padding: 12px 24px;
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.ancla-brand-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  min-width: 0;
+}
+
+.ancla-triangle-motion {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s ease-out;
+}
+
+.ancla-triangle-intro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: 50% 50%;
+  animation-name: anclaTriangleIntro;
+  animation-duration: 1.65s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  animation-delay: 0s;
+  animation-fill-mode: both;
+  animation-iteration-count: 1;
+  will-change: transform;
+}
+
+.ancla-triangle {
+  width: 0;
+  height: 0;
+  border-top: 25px solid transparent;
+  border-bottom: 25px solid transparent;
+  border-right: 40px solid #e11d48;
+  flex: 0 0 auto;
+}
+
+.ancla-copy {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.ancla-copy h1 {
+  margin: 0;
+  color: #000000;
+  font-size: 100px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.ancla-copy p {
+  margin: 20px 0 0;
+  color: #000000;
+  font-size: 28px;
+  line-height: 1.25;
+  max-width: 450px;
+}
+
+.ancla-copy-intro {
+  animation-name: anclaTextIntro;
+  animation-duration: 1.35s;
+  animation-timing-function: ease-out;
+  animation-delay: 0.25s;
+  animation-fill-mode: both;
+  animation-iteration-count: 1;
+  will-change: opacity, transform;
+}
+
+@keyframes anclaTriangleIntro {
+  0% {
+    transform: rotate(90deg);
+  }
+
+  18% {
+    transform: rotate(90deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes anclaTextIntro {
+  0% {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+
+  20% {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+@media (max-width: 900px) {
+  .app-layout {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .ancla-brand-wrap {
+    width: 100%;
+    justify-content: center;
+    gap: 30px;
+  }
+
+  .ancla-copy {
+    flex: 0 1 auto;
+  }
+
+  .ancla-copy h1 {
+    font-size: 68px;
+  }
+
+  .ancla-copy p {
+    font-size: 21px;
+  }
+}
+
+@media (max-width: 560px) {
+  .app-shell {
+    padding: 30px 16px;
+  }
+
+  .ancla-brand-wrap {
+    gap: 20px;
+  }
+
+  .ancla-triangle {
+    border-top-width: 18px;
+    border-bottom-width: 18px;
+    border-right-width: 29px;
+  }
+
+  .ancla-copy h1 {
+    font-size: 48px;
+  }
+
+  .ancla-copy p {
+    margin-top: 12px;
+    font-size: 17px;
+  }
+}

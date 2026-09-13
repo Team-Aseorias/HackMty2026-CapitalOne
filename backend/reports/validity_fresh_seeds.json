@@ -1,0 +1,685 @@
+{
+  "source": "synthetic randomized simulator; not real-world validation",
+  "training_seed": 2026,
+  "seeds": [
+    {
+      "seed": 6201,
+      "fraud": {
+        "n": 3000,
+        "prevalence": 0.21833333333333332,
+        "brier": 0.14490122685235443,
+        "log_loss": 0.44799933952825655,
+        "roc_auc": 0.7595012939663731,
+        "pr_auc": 0.45817908229337456,
+        "ece_10_bins": 0.01913418625223305,
+        "reliability_bins": [
+          {
+            "n": 1254,
+            "predicted": 0.06434983743014891,
+            "observed": 0.06778309409888357
+          },
+          {
+            "n": 340,
+            "predicted": 0.12119884276111041,
+            "observed": 0.13529411764705881
+          },
+          {
+            "n": 622,
+            "predicted": 0.27262653118912566,
+            "observed": 0.2990353697749196
+          },
+          {
+            "n": 356,
+            "predicted": 0.339267418241634,
+            "observed": 0.37640449438202245
+          },
+          {
+            "n": 319,
+            "predicted": 0.4378345981539014,
+            "observed": 0.4169278996865204
+          },
+          {
+            "n": 63,
+            "predicted": 0.5377442280827984,
+            "observed": 0.6031746031746031
+          },
+          {
+            "n": 24,
+            "predicted": 0.6474967514200387,
+            "observed": 0.7916666666666666
+          },
+          {
+            "n": 17,
+            "predicted": 0.7338560358318823,
+            "observed": 0.5294117647058824
+          },
+          {
+            "n": 5,
+            "predicted": 0.8138432580796024,
+            "observed": 1
+          }
+        ]
+      },
+      "genuine_abandonment_verify": {
+        "n": 1159,
+        "prevalence": 0.09404659188955997,
+        "brier": 0.07958280420829374,
+        "log_loss": 0.283710161928544,
+        "roc_auc": 0.7268414154652688,
+        "pr_auc": 0.24600793160229315,
+        "ece_10_bins": 0.016560146399931596,
+        "reliability_bins": [
+          {
+            "n": 822,
+            "predicted": 0.04697018023291179,
+            "observed": 0.051094890510948905
+          },
+          {
+            "n": 262,
+            "predicted": 0.13626367798934216,
+            "observed": 0.17938931297709923
+          },
+          {
+            "n": 56,
+            "predicted": 0.23742811416272433,
+            "observed": 0.21428571428571427
+          },
+          {
+            "n": 15,
+            "predicted": 0.33241717454285397,
+            "observed": 0.26666666666666666
+          },
+          {
+            "n": 4,
+            "predicted": 0.444612637268379,
+            "observed": 1
+          }
+        ]
+      },
+      "policies": [
+        {
+          "policy": "fixed_rule",
+          "expected_cost": 30.1616,
+          "verification_rate": 0.083,
+          "legitimate_completion_rate": 0.9919,
+          "legitimate_abandonment_rate": 0.0081,
+          "fraud_loss_per_attempt": 28.9526,
+          "fraud_capture_rate": 0.1115,
+          "safety_violations": 1538,
+          "cost_standard_error": 1.8075,
+          "seed": 6201,
+          "sample_size": 3000,
+          "data_source": "synthetic",
+          "model_version": "synthetic-v3",
+          "evaluation_scope": "independent_synthetic_attempts_without_temporal_velocity"
+        },
+        {
+          "policy": "predictive",
+          "expected_cost": 14.0449,
+          "verification_rate": 0.5957,
+          "legitimate_completion_rate": 0.9437,
+          "legitimate_abandonment_rate": 0.0563,
+          "fraud_loss_per_attempt": 9.5735,
+          "fraud_capture_rate": 0.7282,
+          "safety_violations": 0,
+          "cost_standard_error": 1.3318,
+          "seed": 6201,
+          "sample_size": 3000,
+          "data_source": "synthetic",
+          "model_version": "synthetic-v3",
+          "evaluation_scope": "independent_synthetic_attempts_without_temporal_velocity"
+        },
+        {
+          "policy": "causal_unconstrained",
+          "expected_cost": 13.4758,
+          "verification_rate": 0.555,
+          "legitimate_completion_rate": 0.9531,
+          "legitimate_abandonment_rate": 0.0469,
+          "fraud_loss_per_attempt": 9.1803,
+          "fraud_capture_rate": 0.6336,
+          "safety_violations": 302,
+          "cost_standard_error": 1.3199,
+          "seed": 6201,
+          "sample_size": 3000,
+          "data_source": "synthetic",
+          "model_version": "synthetic-v3",
+          "evaluation_scope": "independent_synthetic_attempts_without_temporal_velocity"
+        },
+        {
+          "policy": "causal_unpersonalized",
+          "expected_cost": 13.7342,
+          "verification_rate": 0.6567,
+          "legitimate_completion_rate": 0.9412,
+          "legitimate_abandonment_rate": 0.0588,
+          "fraud_loss_per_attempt": 8.908,
+          "fraud_capture_rate": 0.7481,
+          "safety_violations": 0,
+          "cost_standard_error": 1.319,
+          "seed": 6201,
+          "sample_size": 3000,
+          "data_source": "synthetic",
+          "model_version": "synthetic-v3",
+          "evaluation_scope": "independent_synthetic_attempts_without_temporal_velocity"
+        },
+        {
+          "policy": "causal",
+          "expected_cost": 13.7223,
+          "verification_rate": 0.6557,
+          "legitimate_completion_rate": 0.9416,
+          "legitimate_abandonment_rate": 0.0584,
+          "fraud_loss_per_attempt": 8.908,
+          "fraud_capture_rate": 0.7481,
+          "safety_violations": 0,
+          "cost_standard_error": 1.3191,
+          "seed": 6201,
+          "sample_size": 3000,
+          "data_source": "synthetic",
+          "model_version": "synthetic-v3",
+          "evaluation_scope": "independent_synthetic_attempts_without_temporal_velocity"
+        }
+      ],
+      "paired_histories": {
+        "verify_to_allow": 119,
+        "allow_to_verify": 0,
+        "monotonicity_violations": 0
+      },
+      "sensitive_subgroup": {
+        "n": 93,
+        "prevalence": 0.20430107526881722,
+        "brier": 0.1504380500429931,
+        "log_loss": 0.4615710201086974,
+        "roc_auc": 0.7759601706970128,
+        "pr_auc": 0.45108558374486357,
+        "ece_10_bins": 0.09598331612950937,
+        "reliability_bins": [
+          {
+            "n": 51,
+            "predicted": 0.058184057602399024,
+            "observed": 0.0784313725490196
+          },
+          {
+            "n": 26,
+            "predicted": 0.1528209570607695,
+            "observed": 0.3076923076923077
+          },
+          {
+            "n": 10,
+            "predicted": 0.23969026650739886,
+            "observed": 0.5
+          },
+          {
+            "n": 5,
+            "predicted": 0.3447434371020055,
+            "observed": 0.2
+          },
+          {
+            "n": 1,
+            "predicted": 0.4596342990893105,
+            "observed": 1
+          }
+        ]
+      }
+    },
+    {
+      "seed": 6202,
+      "fraud": {
+        "n": 3000,
+        "prevalence": 0.20533333333333334,
+        "brier": 0.14054835552685793,
+        "log_loss": 0.4380138497939758,
+        "roc_auc": 0.7533407238734421,
+        "pr_auc": 0.42647685477814884,
+        "ece_10_bins": 0.008106316122897245,
+        "reliability_bins": [
+          {
+            "n": 1271,
+            "predicted": 0.06474166031986538,
+            "observed": 0.07002360346184107
+          },
+          {
+            "n": 362,
+            "predicted": 0.12201323561431215,
+            "observed": 0.12154696132596685
+          },
+          {
+            "n": 633,
+            "predicted": 0.2722907351267845,
+            "observed": 0.2796208530805687
+          },
+          {
+            "n": 334,
+            "predicted": 0.3401631163183942,
+            "observed": 0.3413173652694611
+          },
+          {
+            "n": 310,
+            "predicted": 0.4395435122604369,
+            "observed": 0.45806451612903226
+          },
+          {
+            "n": 53,
+            "predicted": 0.5368587404859223,
+            "observed": 0.5283018867924528
+          },
+          {
+            "n": 20,
+            "predicted": 0.6543429131562138,
+            "observed": 0.4
+          },
+          {
+            "n": 13,
+            "predicted": 0.7321520352295158,
+            "observed": 0.7692307692307693
+          },
+          {
+            "n": 4,
+            "predicted": 0.8381456804252891,
+            "observed": 1
+          }
+        ]
+      },
+      "genuine_abandonment_verify": {
+        "n": 1208,
+        "prevalence": 0.08609271523178808,
+        "brier": 0.07617511934874642,
+        "log_loss": 0.278927704601383,
+        "roc_auc": 0.6780239687848384,
+        "pr_auc": 0.17531323598687534,
+        "ece_10_bins": 0.019660772851191187,
+        "reliability_bins": [
+          {
+            "n": 877,
+            "predicted": 0.04732060707935736,
+            "observed": 0.06043329532497149
+          },
+          {
+            "n": 256,
+            "predicted": 0.1382762345903476,
+            "observed": 0.1171875
+          },
+          {
+            "n": 62,
+            "predicted": 0.24162285799650332,
+            "observed": 0.3064516129032258
+          },
+          {
+            "n": 8,
+            "predicted": 0.3319979198931759,
+            "observed": 0
+          },
+          {
+            "n": 5,
+            "predicted": 0.43526075886883503,
+            "observed": 0.4
+          }
+        ]
+      },
+      "policies": [
+        {
+          "policy": "fixed_rule",
+          "expected_cost": 28.6521,
+          "verification_rate": 0.0843,
+          "legitimate_completion_rate": 0.9912,
+          "legitimate_abandonment_rate": 0.0088,
+          "fraud_loss_per_attempt": 27.3203,
+          "fraud_capture_rate": 0.0844,
+          "safety_violations": 1491,
+          "cost_standard_error": 1.8847,
+          "seed": 6202,
+          "sample_size": 3000,
+          "data_source": "synthetic",
+          "model_version": "synthetic-v3",
+          "evaluation_scope": "independent_synthetic_attempts_without_temporal_velocity"
+        },
+        {
+          "policy": "predictive",
+          "expected_cost": 15.9031,
+          "verification_rate": 0.5813,
+          "legitimate_completion_rate": 0.9404,
+          "legitimate_abandonment_rate": 0.0596,
+          "fraud_loss_per_attempt": 11.2321,
+          "fraud_capture_rate": 0.6916,
+          "safety_violations": 0,
+          "cost_standard_error": 1.5562,
+          "seed": 6202,
+          "sample_size": 3000,
+          "data_source": "synthetic",
+          "model_version": "synthetic-v3",
+          "evaluation_scope": "independent_synthetic_attempts_without_temporal_velocity"
+        },
+        {
+          "policy": "causal_unconstrained",
+          "expected_cost": 15.5897,
+          "verification_rate": 0.5373,
+          "legitimate_completion_rate": 0.9446,
+          "legitimate_abandonment_rate": 0.0554,
+          "fraud_loss_per_attempt": 11.1,
+          "fraud_capture_rate": 0.5877,
+          "safety_violations": 293,
+          "cost_standard_error": 1.5504,
+          "seed": 6202,
+          "sample_size": 3000,
+          "data_source": "synthetic",
+          "model_version": "synthetic-v3",
+          "evaluation_scope": "independent_synthetic_attempts_without_temporal_velocity"
+        },
+        {
+          "policy": "causal_unpersonalized",
+          "expected_cost": 15.7474,
+          "verification_rate": 0.636,
+          "legitimate_completion_rate": 0.9371,
+          "legitimate_abandonment_rate": 0.0629,
+          "fraud_loss_per_attempt": 10.7555,
+          "fraud_capture_rate": 0.7078,
+          "safety_violations": 0,
+          "cost_standard_error": 1.5492,
+          "seed": 6202,
+          "sample_size": 3000,
+          "data_source": "synthetic",
+          "model_version": "synthetic-v3",
+          "evaluation_scope": "independent_synthetic_attempts_without_temporal_velocity"
+        },
+        {
+          "policy": "causal",
+          "expected_cost": 15.7845,
+          "verification_rate": 0.635,
+          "legitimate_completion_rate": 0.9371,
+          "legitimate_abandonment_rate": 0.0629,
+          "fraud_loss_per_attempt": 10.7976,
+          "fraud_capture_rate": 0.7062,
+          "safety_violations": 0,
+          "cost_standard_error": 1.5496,
+          "seed": 6202,
+          "sample_size": 3000,
+          "data_source": "synthetic",
+          "model_version": "synthetic-v3",
+          "evaluation_scope": "independent_synthetic_attempts_without_temporal_velocity"
+        }
+      ],
+      "paired_histories": {
+        "verify_to_allow": 112,
+        "allow_to_verify": 0,
+        "monotonicity_violations": 0
+      },
+      "sensitive_subgroup": {
+        "n": 92,
+        "prevalence": 0.10869565217391304,
+        "brier": 0.09174965997236251,
+        "log_loss": 0.32180078592510364,
+        "roc_auc": 0.6792682926829269,
+        "pr_auc": 0.24847826599100528,
+        "ece_10_bins": 0.05693466730923364,
+        "reliability_bins": [
+          {
+            "n": 54,
+            "predicted": 0.05515018189245656,
+            "observed": 0.05555555555555555
+          },
+          {
+            "n": 21,
+            "predicted": 0.15468763238652108,
+            "observed": 0.047619047619047616
+          },
+          {
+            "n": 12,
+            "predicted": 0.24919690458226565,
+            "observed": 0.4166666666666667
+          },
+          {
+            "n": 2,
+            "predicted": 0.3438236298519491,
+            "observed": 0
+          },
+          {
+            "n": 3,
+            "predicted": 0.42345817660283186,
+            "observed": 0.3333333333333333
+          }
+        ]
+      }
+    },
+    {
+      "seed": 6203,
+      "fraud": {
+        "n": 3000,
+        "prevalence": 0.18866666666666668,
+        "brier": 0.13264518023469818,
+        "log_loss": 0.4188082272008614,
+        "roc_auc": 0.7547073119035106,
+        "pr_auc": 0.40212434821727155,
+        "ece_10_bins": 0.014195610381860168,
+        "reliability_bins": [
+          {
+            "n": 1307,
+            "predicted": 0.06486059794958014,
+            "observed": 0.06273909716908951
+          },
+          {
+            "n": 341,
+            "predicted": 0.1236689631196463,
+            "observed": 0.11436950146627566
+          },
+          {
+            "n": 638,
+            "predicted": 0.2727331709701147,
+            "observed": 0.23981191222570533
+          },
+          {
+            "n": 314,
+            "predicted": 0.33992822302347886,
+            "observed": 0.3503184713375796
+          },
+          {
+            "n": 290,
+            "predicted": 0.4346650994524234,
+            "observed": 0.41379310344827586
+          },
+          {
+            "n": 68,
+            "predicted": 0.5430089311362694,
+            "observed": 0.5588235294117647
+          },
+          {
+            "n": 22,
+            "predicted": 0.6485670665666354,
+            "observed": 0.5909090909090909
+          },
+          {
+            "n": 17,
+            "predicted": 0.7357623332331121,
+            "observed": 0.5882352941176471
+          },
+          {
+            "n": 3,
+            "predicted": 0.823968499584571,
+            "observed": 0.3333333333333333
+          }
+        ]
+      },
+      "genuine_abandonment_verify": {
+        "n": 1248,
+        "prevalence": 0.08253205128205128,
+        "brier": 0.07151431788551296,
+        "log_loss": 0.2604620642878625,
+        "roc_auc": 0.7219061347352356,
+        "pr_auc": 0.20262727978874315,
+        "ece_10_bins": 0.016748970664862646,
+        "reliability_bins": [
+          {
+            "n": 899,
+            "predicted": 0.04782075238053854,
+            "observed": 0.04560622914349277
+          },
+          {
+            "n": 279,
+            "predicted": 0.14071418008675604,
+            "observed": 0.17204301075268819
+          },
+          {
+            "n": 53,
+            "predicted": 0.24133943869303623,
+            "observed": 0.11320754716981132
+          },
+          {
+            "n": 13,
+            "predicted": 0.3410294954535517,
+            "observed": 0.5384615384615384
+          },
+          {
+            "n": 4,
+            "predicted": 0.45337710850365537,
+            "observed": 0.25
+          }
+        ]
+      },
+      "policies": [
+        {
+          "policy": "fixed_rule",
+          "expected_cost": 23.9939,
+          "verification_rate": 0.0937,
+          "legitimate_completion_rate": 0.986,
+          "legitimate_abandonment_rate": 0.014,
+          "fraud_loss_per_attempt": 21.7927,
+          "fraud_capture_rate": 0.1325,
+          "safety_violations": 1469,
+          "cost_standard_error": 1.6184,
+          "seed": 6203,
+          "sample_size": 3000,
+          "data_source": "synthetic",
+          "model_version": "synthetic-v3",
+          "evaluation_scope": "independent_synthetic_attempts_without_temporal_velocity"
+        },
+        {
+          "policy": "predictive",
+          "expected_cost": 13.02,
+          "verification_rate": 0.5833,
+          "legitimate_completion_rate": 0.9388,
+          "legitimate_abandonment_rate": 0.0612,
+          "fraud_loss_per_attempt": 7.6134,
+          "fraud_capture_rate": 0.7261,
+          "safety_violations": 0,
+          "cost_standard_error": 1.2517,
+          "seed": 6203,
+          "sample_size": 3000,
+          "data_source": "synthetic",
+          "model_version": "synthetic-v3",
+          "evaluation_scope": "independent_synthetic_attempts_without_temporal_velocity"
+        },
+        {
+          "policy": "causal_unconstrained",
+          "expected_cost": 12.7329,
+          "verification_rate": 0.5477,
+          "legitimate_completion_rate": 0.94,
+          "legitimate_abandonment_rate": 0.06,
+          "fraud_loss_per_attempt": 7.4278,
+          "fraud_capture_rate": 0.6237,
+          "safety_violations": 283,
+          "cost_standard_error": 1.2454,
+          "seed": 6203,
+          "sample_size": 3000,
+          "data_source": "synthetic",
+          "model_version": "synthetic-v3",
+          "evaluation_scope": "independent_synthetic_attempts_without_temporal_velocity"
+        },
+        {
+          "policy": "causal_unpersonalized",
+          "expected_cost": 12.9575,
+          "verification_rate": 0.6437,
+          "legitimate_completion_rate": 0.9334,
+          "legitimate_abandonment_rate": 0.0666,
+          "fraud_loss_per_attempt": 7.1638,
+          "fraud_capture_rate": 0.7456,
+          "safety_violations": 0,
+          "cost_standard_error": 1.2445,
+          "seed": 6203,
+          "sample_size": 3000,
+          "data_source": "synthetic",
+          "model_version": "synthetic-v3",
+          "evaluation_scope": "independent_synthetic_attempts_without_temporal_velocity"
+        },
+        {
+          "policy": "causal",
+          "expected_cost": 12.9492,
+          "verification_rate": 0.642,
+          "legitimate_completion_rate": 0.9334,
+          "legitimate_abandonment_rate": 0.0666,
+          "fraud_loss_per_attempt": 7.1638,
+          "fraud_capture_rate": 0.7456,
+          "safety_violations": 0,
+          "cost_standard_error": 1.2445,
+          "seed": 6203,
+          "sample_size": 3000,
+          "data_source": "synthetic",
+          "model_version": "synthetic-v3",
+          "evaluation_scope": "independent_synthetic_attempts_without_temporal_velocity"
+        }
+      ],
+      "paired_histories": {
+        "verify_to_allow": 122,
+        "allow_to_verify": 0,
+        "monotonicity_violations": 0
+      },
+      "sensitive_subgroup": {
+        "n": 90,
+        "prevalence": 0.14444444444444443,
+        "brier": 0.1085896271581087,
+        "log_loss": 0.3533901785516941,
+        "roc_auc": 0.7682317682317683,
+        "pr_auc": 0.4006110083525175,
+        "ece_10_bins": 0.05234921527573806,
+        "reliability_bins": [
+          {
+            "n": 46,
+            "predicted": 0.05958826420543052,
+            "observed": 0.06521739130434782
+          },
+          {
+            "n": 28,
+            "predicted": 0.14030984815693887,
+            "observed": 0.17857142857142858
+          },
+          {
+            "n": 9,
+            "predicted": 0.22658810160177292,
+            "observed": 0.1111111111111111
+          },
+          {
+            "n": 6,
+            "predicted": 0.34587769771225324,
+            "observed": 0.6666666666666666
+          },
+          {
+            "n": 1,
+            "predicted": 0.41713854851808163,
+            "observed": 0
+          }
+        ]
+      }
+    }
+  ],
+  "mean_fraud_brier": 0.1393649208713035,
+  "mean_abandonment_brier": 0.07575741381418437,
+  "paired_causal_minus_predictive_cost": {
+    "mean_per_attempt": -0.17067161111111112,
+    "bootstrap_95_interval": [
+      -0.3691500111111111,
+      -0.00002399583333335058
+    ],
+    "bootstrap_seed": 6204,
+    "bootstrap_repetitions": 1000,
+    "n": 9000,
+    "interpretation": "Negative favors causal; interval is conditional on this fixed simulator and model"
+  },
+  "fraud_is_not_assumed_absent": {
+    "synthetic_fraud_cases": 1837,
+    "synthetic_fraud_cases_recommended_allow": 219,
+    "live_feedback_fraud_labels": "unknown; completion is not legitimacy"
+  },
+  "limitations": [
+    "Independent synthetic rows do not validate serial dependence, attack detection or live individual effects.",
+    "Repeated abandoned transactions have no adjudicated fraud labels; friction history is only a proxy.",
+    "Training histories contain at most 12 prior verifications; larger counts are extrapolation.",
+    "The simulator assumes no voluntary abandonment under allow.",
+    "Velocity rule thresholds are demo policy assumptions, not learned or calibrated fraud probabilities."
+  ]
+}
