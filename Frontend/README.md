@@ -8,13 +8,15 @@ Requiere Node.js 24 (o posterior compatible) y el backend en ejecución.
 1. Instala con `npm ci`.
 2. Copia `.env.example` a `.env` y configura `BACKEND_URL` y la misma
    `BACKEND_API_KEY` del backend. Para un backend demo sin clave, puede quedar vacía.
-3. Ejecuta `npm run dev` y abre la URL local que imprime Vite.
+3. Ejecuta `npm start` y abre `http://localhost:3000`. El script construye el
+   frontend automáticamente antes de iniciar el servidor.
 4. Selecciona uno de los perfiles controlados y captura comercio e importe. Los
    IDs internos se resuelven en el backend y no se muestran en el navegador.
 
-Vite escucha en 127.0.0.1. Si defines DEMO_ACCESS_PASSWORD, el navegador pedirá
-DEMO_ACCESS_USER y esa contraseña. Las variables se leen en el servidor; nunca
-uses un prefijo VITE_ para secretos.
+En localhost no se exige acceso básico salvo que configures
+`REQUIRE_DEMO_LOGIN=true`. En producción sí se exigen `DEMO_ACCESS_USER`,
+`DEMO_ACCESS_PASSWORD` y `BACKEND_API_KEY`. Las variables se leen en el servidor;
+nunca uses un prefijo VITE_ para secretos.
 
 ## Producción / Render
 

@@ -5,11 +5,14 @@ import { fileURLToPath } from 'node:url';
 import { createGateway } from './gateway.ts';
 
 const root = fileURLToPath(new URL('../dist/', import.meta.url));
+const requireLogin = process.env.REQUIRE_DEMO_LOGIN === 'true'
+  || process.env.NODE_ENV === 'production'
+  || process.env.RENDER === 'true';
 const gateway = createGateway({
   backendUrl: process.env.BACKEND_URL || 'http://127.0.0.1:8000',
   apiKey: process.env.BACKEND_API_KEY,
   username: process.env.DEMO_ACCESS_USER, password: process.env.DEMO_ACCESS_PASSWORD,
-  requireLogin: true,
+  requireLogin,
 });
 const types: Record<string, string> = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.png': 'image/png', '.svg': 'image/svg+xml', '.ico': 'image/x-icon' };
 const server = createServer(async (req, res) => {
