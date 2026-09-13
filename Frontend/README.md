@@ -9,8 +9,8 @@ Requiere Node.js 24 (o posterior compatible) y el backend en ejecución.
 2. Copia `.env.example` a `.env` y configura `BACKEND_URL` y la misma
    `BACKEND_API_KEY` del backend. Para un backend demo sin clave, puede quedar vacía.
 3. Ejecuta `npm run dev` y abre la URL local que imprime Vite.
-4. Introduce cliente, cuenta y comercio de una cuenta demo autorizada.
-   El nombre del comercio no sustituye su ID de Nessie.
+4. Selecciona uno de los perfiles controlados y captura comercio e importe. Los
+   IDs internos se resuelven en el backend y no se muestran en el navegador.
 
 Vite escucha en 127.0.0.1. Si defines DEMO_ACCESS_PASSWORD, el navegador pedirá
 DEMO_ACCESS_USER y esa contraseña. Las variables se leen en el servidor; nunca
@@ -61,6 +61,9 @@ mide las reglas temporales, que se prueban por separado.
 - Las cantidades están en unidades monetarias: el backend no declara divisa.
 
 Cuando Nessie no está disponible, la interfaz identifica el contexto local.
+Los perfiles `estable`, `mixto` y `friccion` son fixtures comparables, no
+clientes reales. Sus resultados nuevos se guardan en el historial normal para
+que abandonos y completados posteriores cambien la evidencia del perfil.
 Cuando se usa memoria, advierte que los registros pueden perderse.
 El backend se entrenó con datos sintéticos y no reentrena automáticamente con
 los resultados de esta interfaz.

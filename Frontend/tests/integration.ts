@@ -5,7 +5,7 @@ import { once } from 'node:events';
 import { createServer, type Server } from 'node:http';
 import { fileURLToPath } from 'node:url';
 import { createGateway } from '../server/gateway.ts';
-import { evaluarCompra, registrarResultado, obtenerDecisionesRecientes, obtenerMetricas, evaluarPoliticas } from '../src/services/api.ts';
+import { evaluarCompra, evaluarCompraPerfil, registrarResultado, obtenerDecisionesRecientes, obtenerMetricas, obtenerPerfilesDemo, evaluarPoliticas } from '../src/services/api.ts';
 
 async function listen(server: Server) {
   await new Promise<void>(resolve => server.listen(0, '127.0.0.1', resolve));
@@ -74,5 +74,14 @@ test('actual browser API client → gateway → FastAPI inference, feedback, met
   const policies = await evaluarPoliticas(100, 2027);
   assert.equal(policies.length, 5);
   assert.equal(policies.find(p => p.policy === 'causal')?.safety_violations, 0);
+  const profiles = await obtenerPerfilesDemo();
+  assert.deepEqual(profiles.map(profile => profile.reported_abandons), [0, 3, 6]);
+  assert.ok(profiles.every(profile => !('customer_id' in profile) && !('account_id' in profile)));
+  const stable = await evaluarCompraPerfil('estable', { merchant: 'Farmacias Demo', amount: 600 });
+  const friction = await evaluarCompraPerfil('friccion', { merchant: 'Farmacias Demo', amount: 600 });
+  assert.equal(stable.personalization_evidence?.reported_abandons, 0);
+  assert.equal(friction.personalization_evidence?.reported_abandons, 6);
+  assert.ok((friction.estimated_cost_verify ?? 0) > (stable.estimated_cost_verify ?? 0));
+  assert.ok(Math.abs(friction.risk_score - stable.risk_score) < 1e-10);
   await assert.rejects(evaluarCompra({ ...attempt, account_id: '' }), /422/);
 });

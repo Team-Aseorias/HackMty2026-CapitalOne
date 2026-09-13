@@ -35,6 +35,7 @@ test('gateway protects the demo, forwards only authorized routes and preserves f
     assert.equal(calls[0].path, '/decisions/recent?limit=25');
     assert.equal(calls[0].key, 'server-secret');
     assert.equal(calls[0].auth, undefined);
+    assert.equal((await fetch(base + '/api/demo-profiles', { headers })).status, 200);
     for (const path of ['/api/health', '/api/decisions/d1/verification', '/api/accounts', '/api/decisions/d1/complete/extra']) {
       assert.equal((await fetch(base + path, { headers })).status, 404);
     }
@@ -43,6 +44,9 @@ test('gateway protects the demo, forwards only authorized routes and preserves f
     const payload = { customer_id: 'c1', account_id: 'a1', merchant: 'Shop', amount: 20 };
     assert.equal((await fetch(base + '/api/purchase-attempts', { method: 'POST', headers: { ...headers, Origin: base }, body: JSON.stringify(payload) })).status, 200);
     assert.deepEqual(JSON.parse(calls.at(-1)!.body), payload);
+    const profilePayload = { merchant: 'Shop', amount: 20 };
+    assert.equal((await fetch(base + '/api/demo-profiles/estable/purchase-attempts', { method: 'POST', headers, body: JSON.stringify(profilePayload) })).status, 200);
+    assert.deepEqual(JSON.parse(calls.at(-1)!.body), profilePayload);
     const conflict = await fetch(base + '/api/decisions/d1/abandon', { method: 'POST', headers });
     assert.equal(conflict.status, 409);
     assert.match(((await conflict.json()) as { detail: string }).detail, /different reported outcome/);

@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from starlette.concurrency import run_in_threadpool
 
 from app.db.mongo import close_client, ensure_indexes, is_configured, ping
-from app.routers import dashboard, decisions, evaluations, purchase_attempts
+from app.routers import dashboard, decisions, demo_profiles, evaluations, purchase_attempts
 from app.core.config import settings
 from app.core.security import require_api_key
 from app.repositories.decision_repository import PersistenceUnavailable
@@ -51,6 +51,7 @@ app.include_router(purchase_attempts.router, dependencies=[Depends(require_api_k
 app.include_router(decisions.router, dependencies=[Depends(require_api_key)])
 app.include_router(dashboard.router, dependencies=[Depends(require_api_key)])
 app.include_router(evaluations.router, dependencies=[Depends(require_api_key)])
+app.include_router(demo_profiles.router, dependencies=[Depends(require_api_key)])
 
 
 @app.exception_handler(PersistenceUnavailable)

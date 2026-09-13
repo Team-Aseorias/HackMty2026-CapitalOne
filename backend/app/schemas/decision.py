@@ -28,6 +28,7 @@ class ActivityEvidence(BaseModel):
 
 class DecisionOut(BaseModel):
     id: str | None = None
+    demo_profile_key: str | None = None
     decision: Literal["allow", "verify"]
     risk_score: float = Field(ge=0, le=1)
     reason: str

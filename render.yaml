@@ -23,3 +23,5 @@ services:
         sync: false
       - key: CORS_ORIGINS
         sync: false
+      - key: ENABLE_DEMO_PROFILES
+        value: "true"

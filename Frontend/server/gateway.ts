@@ -19,8 +19,8 @@ export function createGateway(config: GatewayConfig) {
     if (!url.pathname.startsWith('/api/')) return false;
     const path = url.pathname.slice(4);
     const allowed = req.method === 'GET'
-      ? /^\/(dashboard\/metrics|decisions\/recent|decisions\/[a-zA-Z0-9_-]+)$/.test(path)
-      : req.method === 'POST' && /^\/(purchase-attempts|evaluations\/run|decisions\/[a-zA-Z0-9_-]+\/(complete|abandon))$/.test(path);
+      ? /^\/(dashboard\/metrics|demo-profiles|decisions\/recent|decisions\/[a-zA-Z0-9_-]+)$/.test(path)
+      : req.method === 'POST' && /^\/(purchase-attempts|demo-profiles\/[a-zA-Z0-9_-]+\/purchase-attempts|evaluations\/run|decisions\/[a-zA-Z0-9_-]+\/(complete|abandon))$/.test(path);
     if (!allowed) { send(404, 'Ruta no disponible'); return true; }
     if (req.method === 'POST') {
       const origin = req.headers.origin;

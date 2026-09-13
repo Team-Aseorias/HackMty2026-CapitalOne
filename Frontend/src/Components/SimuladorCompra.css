@@ -99,3 +99,17 @@
   cursor: pointer;
   font-weight: bold;
 }
+
+.perfil-resumen {
+  display: grid;
+  gap: 4px;
+  margin-top: 10px;
+  padding: 12px 14px;
+  border-left: 4px solid #e11d48;
+  background: #fff1f2;
+  font-size: 14px;
+}
+
+.perfil-resumen span {
+  color: #3f3f46;
+}

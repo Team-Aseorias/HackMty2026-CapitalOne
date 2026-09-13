@@ -32,6 +32,7 @@ class Settings:
     activity_window_seconds: int = int(getenv("ACTIVITY_WINDOW_SECONDS", "600"))
     max_window_attempts: int = int(getenv("MAX_WINDOW_ATTEMPTS", "5"))
     max_window_verify_abandons: int = int(getenv("MAX_WINDOW_VERIFY_ABANDONS", "3"))
+    enable_demo_profiles: bool = getenv("ENABLE_DEMO_PROFILES", "true").lower() == "true"
     api_key: str = getenv("BACKEND_API_KEY", "")
     demo_mode: bool = getenv("DEMO_MODE", "true").lower() == "true"
     cors_origins: str = getenv("CORS_ORIGINS", "http://localhost:5173")

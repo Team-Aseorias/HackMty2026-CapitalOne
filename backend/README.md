@@ -26,6 +26,20 @@ subject to independent fraud-risk limits. The consuming application decides
 how to act on the recommendation and performs any verification or purchase.
 ANCLA does not execute or approve verification challenges.
 
+## Perfiles controlados para la demo
+
+`GET /demo-profiles` devuelve tres alias comparables (`estable`, `mixto` y
+`friccion`) sin exponer IDs internos. `POST
+/demo-profiles/{key}/purchase-attempts` recibe únicamente comercio e importe.
+Todos parten del mismo contexto de compra y difieren en su historial inicial de
+verificaciones: 0, 3 o 6 abandonos entre 8 resultados. El backend combina ese
+fixture con los resultados que se reporten durante la sesión, por lo que las
+siguientes decisiones sí incorporan esos abandonos.
+
+Estos perfiles son escenarios controlados, no clientes de Capital One, datos
+bancarios reales ni etiquetas de fraude. `ENABLE_DEMO_PROFILES=false` desactiva
+las rutas. En despliegue siguen protegidas por `BACKEND_API_KEY` y el gateway.
+
 ## Run locally
 
 ```powershell
