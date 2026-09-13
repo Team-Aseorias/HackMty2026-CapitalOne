@@ -91,5 +91,6 @@ class FeatureService:
             "average_purchase_amount": typical_amount,
             "amount_zscore": amount_zscore,
             "prior_verifications": float(len(verifications)),
+            "prior_verify_abandons": float(len(abandons)),
             "prior_verify_abandonment_rate": abandonment_rate,
         }

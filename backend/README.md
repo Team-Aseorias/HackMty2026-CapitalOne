@@ -1,5 +1,23 @@
 # ANCLA backend
 
+See [the sequential validity review](reports/SEQUENTIAL_VALIDITY_REVIEW.md) for
+measured repeated-abandonment sensitivity, fresh-seed validation and explicit
+limits on what this prototype demonstrates.
+
+Policy `safety-v2` adds account-level activity snapshots. Defaults recommend
+verify from the fifth persisted attempt (including the current one) in 600
+seconds, or after three reported verification abandonments in that window.
+Configure `ACTIVITY_WINDOW_SECONDS`, `MAX_WINDOW_ATTEMPTS` and
+`MAX_WINDOW_VERIFY_ABANDONS`. These are demo rules, not calibrated fraud
+probabilities or an atomic rate limiter. Mongo fallback only sees in-process
+records. Static policy evaluations do not measure these temporal rules.
+
+Decision responses now disclose `safety_checks`, `cost_preferred_action`,
+`personalization_evidence`, `recent_activity`, `model_warnings` and
+`fraud_status: "unknown"`. Outcomes never establish fraud labels.
+Training-range warnings flag extrapolation; range membership does not prove
+calibration. Amounts outside the training envelope force a verify recommendation.
+
 FastAPI service for assessing purchase attempts with risk, causal uplift and configurable fraud/friction costs.
 
 ANCLA is a recommendation service. It estimates how verification changes a

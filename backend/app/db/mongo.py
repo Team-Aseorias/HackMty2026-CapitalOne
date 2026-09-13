@@ -74,6 +74,8 @@ async def ensure_indexes() -> None:
 
     await database[DECISIONS].create_index("id", unique=True)
     await database[DECISIONS].create_index([("created_at", -1)])
+    await database[DECISIONS].create_index([("account_id", 1), ("created_at", -1)])
+    await database[DECISIONS].create_index([("account_id", 1), ("abandoned_at", -1)])
     # Match the already-merged DB branch index definition. All new inference
     # documents include attempt_id; do not silently replace an existing index.
     await database[DECISIONS].create_index("attempt_id", unique=True)

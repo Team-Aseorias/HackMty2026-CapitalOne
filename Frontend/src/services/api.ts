@@ -5,6 +5,13 @@ export interface Decision {
   allow_completion_probability: number | null; verify_completion_probability: number | null;
   incremental_abandonment_probability: number | null; safety_override: boolean; personalization_applied: boolean;
   context_source: 'nessie' | 'local'; persistence_source: 'mongo' | 'memory'; model_version: string;
+  policy_version?: string;
+  fraud_status?: 'unknown';
+  safety_checks?: { code: string; observed: number; threshold: number; triggered: boolean }[];
+  cost_preferred_action?: 'allow' | 'verify' | null;
+  model_warnings?: string[];
+  personalization_evidence?: { resolved_verifications: number; reported_abandons: number; smoothed_abandonment_rate: number; minimum_history: number } | null;
+  recent_activity?: { window_seconds: number; prior_attempts: number; prior_verify_abandons: number } | null;
 }
 export type Outcome = 'pending' | 'completed' | 'abandoned';
 export interface DecisionRecord extends Decision, PurchaseAttempt { action: 'allow' | 'verify'; outcome: Outcome; created_at: string }

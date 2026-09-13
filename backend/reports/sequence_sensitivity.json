@@ -1,0 +1,2508 @@
+{
+  "scope": "Controlled synthetic sensitivity, fixed account/merchant/amount/hour; not calibration against real users",
+  "amount": 600,
+  "thresholds": {
+    "risk": 0.15,
+    "loss": 15,
+    "amount": 500,
+    "verification_cost": 5,
+    "abandonment_cost_rate": 0.15
+  },
+  "sequence": [
+    {
+      "prior_resolved_verifications": 0,
+      "smoothed_history_rate": 0.16666666666666666,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 25.31922051883495,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.014251190394763524,
+      "delta_verify_cost": 0,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 1,
+      "smoothed_history_rate": 0.16666666666666666,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 25.337079420427344,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.014468435527158818,
+      "delta_verify_cost": 0.017858901592394005,
+      "recent_prior_attempts": 1,
+      "recent_prior_verify_abandons": 1,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 2,
+      "smoothed_history_rate": 0.16666666666666666,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 25.35520650635093,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.014688942995719323,
+      "delta_verify_cost": 0.018127085923588027,
+      "recent_prior_attempts": 2,
+      "recent_prior_verify_abandons": 2,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 3,
+      "smoothed_history_rate": 0.4444444444444444,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 26.68543085788131,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.03087049614828019,
+      "delta_verify_cost": 1.3302243515303793,
+      "recent_prior_attempts": 3,
+      "recent_prior_verify_abandons": 3,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 4,
+      "smoothed_history_rate": 0.5,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 27.12171376394572,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.03617767235950575,
+      "delta_verify_cost": 0.43628290606440956,
+      "recent_prior_attempts": 4,
+      "recent_prior_verify_abandons": 4,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 5,
+      "smoothed_history_rate": 0.5454545454545454,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 27.540627060328923,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.04127355544414524,
+      "delta_verify_cost": 0.4189132963832023,
+      "recent_prior_attempts": 5,
+      "recent_prior_verify_abandons": 5,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 6,
+      "smoothed_history_rate": 0.5833333333333334,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 27.94156664234114,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.04615079675297573,
+      "delta_verify_cost": 0.40093958201221724,
+      "recent_prior_attempts": 6,
+      "recent_prior_verify_abandons": 6,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 7,
+      "smoothed_history_rate": 0.6153846153846154,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 28.325019238103426,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.050815317104506263,
+      "delta_verify_cost": 0.38345259576228585,
+      "recent_prior_attempts": 7,
+      "recent_prior_verify_abandons": 7,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 8,
+      "smoothed_history_rate": 0.6428571428571429,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 28.69202380368496,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.055279754910322776,
+      "delta_verify_cost": 0.36700456558153505,
+      "recent_prior_attempts": 8,
+      "recent_prior_verify_abandons": 8,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 9,
+      "smoothed_history_rate": 0.6666666666666666,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 29.04386413708806,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.059559726968891,
+      "delta_verify_cost": 0.35184033340309995,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 9,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 10,
+      "smoothed_history_rate": 0.6875,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 29.38189640612389,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.06367173042333918,
+      "delta_verify_cost": 0.3380322690358284,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 11,
+      "smoothed_history_rate": 0.7058823529411765,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 29.707455110091384,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.06763199882954307,
+      "delta_verify_cost": 0.325558703967495,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 12,
+      "smoothed_history_rate": 0.7222222222222222,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 30.021804493698312,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.07145591112934291,
+      "delta_verify_cost": 0.31434938360692755,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 13,
+      "smoothed_history_rate": 0.7368421052631579,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 30.32611613140834,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.07515771897467549,
+      "delta_verify_cost": 0.304311637710029,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 14,
+      "smoothed_history_rate": 0.75,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 30.62146137974851,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.07875045491344734,
+      "delta_verify_cost": 0.29534524834016906,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 15,
+      "smoothed_history_rate": 0.7619047619047619,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 30.908812060707987,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.0822459407027587,
+      "delta_verify_cost": 0.28735068095947724,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 16,
+      "smoothed_history_rate": 0.7727272727272727,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 31.189045482723056,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.08565484838682269,
+      "delta_verify_cost": 0.28023342201506907,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 17,
+      "smoothed_history_rate": 0.782608695652174,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 31.46295152784251,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.08898678650899661,
+      "delta_verify_cost": 0.27390604511945327,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 18,
+      "smoothed_history_rate": 0.7916666666666666,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 31.731240496945787,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.09225039554516845,
+      "delta_verify_cost": 0.2682889691032777,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 19,
+      "smoothed_history_rate": 0.8,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 31.994550978122916,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.0954534436188954,
+      "delta_verify_cost": 0.26331048117712896,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 20,
+      "smoothed_history_rate": 0.8076923076923077,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 32.25345734403521,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.0986029177032679,
+      "delta_verify_cost": 0.25890636591229566,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 21,
+      "smoothed_history_rate": 0.8148148148148148,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 32.50847668537204,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.10170510796314802,
+      "delta_verify_cost": 0.25501934133682624,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 22,
+      "smoothed_history_rate": 0.8214285714285714,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 32.76007510490575,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.10476568431938549,
+      "delta_verify_cost": 0.251598419533714,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 23,
+      "smoothed_history_rate": 0.8275862068965517,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 33.008673363464084,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.10778976512941396,
+      "delta_verify_cost": 0.2485982585583315,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 24,
+      "smoothed_history_rate": 0.8333333333333334,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 33.25465190553924,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.11078197832142134,
+      "delta_verify_cost": 0.24597854207515724,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 25,
+      "smoothed_history_rate": 0.8387096774193549,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 33.49835531047878,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.11374651554099058,
+      "delta_verify_cost": 0.2437034049395379,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 26,
+      "smoothed_history_rate": 0.84375,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 33.740096222711855,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.11668717996045319,
+      "delta_verify_cost": 0.2417409122330767,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 27,
+      "smoothed_history_rate": 0.8484848484848485,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 33.98015881580263,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.11960742841746796,
+      "delta_verify_cost": 0.2400625930907765,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 28,
+      "smoothed_history_rate": 0.8529411764705882,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 34.218801843052546,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.12251040852416184,
+      "delta_verify_cost": 0.23864302724991404,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 29,
+      "smoothed_history_rate": 0.8571428571428571,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 34.4562613235618,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.1253989913418041,
+      "delta_verify_cost": 0.23745948050925136,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 30,
+      "smoothed_history_rate": 0.8611111111111112,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 34.692752908102015,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.1282758001605332,
+      "delta_verify_cost": 0.23649158454021801,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 31,
+      "smoothed_history_rate": 0.8648648648648649,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 34.92847396442201,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.13114323586612042,
+      "delta_verify_cost": 0.23572105631999563,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 32,
+      "smoothed_history_rate": 0.868421052631579,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 35.16360541703177,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.1340034993200756,
+      "delta_verify_cost": 0.23513145260975676,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 33,
+      "smoothed_history_rate": 0.8717948717948718,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 35.398313372252744,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.13685861112761977,
+      "delta_verify_cost": 0.23470795522097632,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 34,
+      "smoothed_history_rate": 0.875,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 35.6327505554607,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.13971042912106713,
+      "delta_verify_cost": 0.2344371832079588,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 35,
+      "smoothed_history_rate": 0.8780487804878049,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 35.867057584000335,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.14256066384423294,
+      "delta_verify_cost": 0.23430702853963226,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 36,
+      "smoothed_history_rate": 0.8809523809523809,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 36.1013640962084,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.1454108922864683,
+      "delta_verify_cost": 0.23430651220806453,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 37,
+      "smoothed_history_rate": 0.8837209302325582,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 36.335789754316224,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.148262570082497,
+      "delta_verify_cost": 0.23442565810782412,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 38,
+      "smoothed_history_rate": 0.8863636363636364,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 36.57044513667962,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.15111704236597268,
+      "delta_verify_cost": 0.23465538236339967,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 39,
+      "smoothed_history_rate": 0.8888888888888888,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 36.805432532766325,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.1539755534401266,
+      "delta_verify_cost": 0.2349873960867015,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 40,
+      "smoothed_history_rate": 0.8913043478260869,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 37.0408466525829,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.15683925540761245,
+      "delta_verify_cost": 0.2354141198165749,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 41,
+      "smoothed_history_rate": 0.8936170212765957,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 37.27677526071048,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.1597092158832526,
+      "delta_verify_cost": 0.23592860812757976,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 42,
+      "smoothed_history_rate": 0.8958333333333334,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 37.51329974381032,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.16258642489747555,
+      "delta_verify_cost": 0.2365244830998421,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 43,
+      "smoothed_history_rate": 0.8979591836734694,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 37.750495619329385,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.16547180108448056,
+      "delta_verify_cost": 0.2371958755190633,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 44,
+      "smoothed_history_rate": 0.9,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 37.98843299215832,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.16836619723726676,
+      "delta_verify_cost": 0.237937372828938,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 45,
+      "smoothed_history_rate": 0.9019607843137255,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 38.22717696514798,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.1712704053013736,
+      "delta_verify_cost": 0.23874397298965988,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 46,
+      "smoothed_history_rate": 0.9038461538461539,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 38.46678800865813,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.17418516087026625,
+      "delta_verify_cost": 0.23961104351014484,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 47,
+      "smoothed_history_rate": 0.9056603773584906,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 38.70732229367695,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.17711114723757904,
+      "delta_verify_cost": 0.2405342850188248,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 48,
+      "smoothed_history_rate": 0.9074074074074074,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 38.948831992499365,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.18004899905472382,
+      "delta_verify_cost": 0.24150969882241213,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 49,
+      "smoothed_history_rate": 0.9090909090909091,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 39.19136555047327,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.18299930563655686,
+      "delta_verify_cost": 0.24253355797390697,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 50,
+      "smoothed_history_rate": 0.9107142857142857,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 39.43496793190701,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.18596261395272584,
+      "delta_verify_cost": 0.2436023814337389,
+      "recent_prior_attempts": 9,
+      "recent_prior_verify_abandons": 10,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit",
+        "attempt_velocity",
+        "verify_abandon_velocity"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    }
+  ],
+  "rapid_and_spaced_model_predictions_identical": true,
+  "spaced_sequence": [
+    {
+      "prior_resolved_verifications": 0,
+      "smoothed_history_rate": 0.16666666666666666,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 25.31922051883495,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.014251190394763524,
+      "delta_verify_cost": 0,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 1,
+      "smoothed_history_rate": 0.16666666666666666,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 25.337079420427344,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.014468435527158818,
+      "delta_verify_cost": 0.017858901592394005,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 2,
+      "smoothed_history_rate": 0.16666666666666666,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 25.35520650635093,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.014688942995719323,
+      "delta_verify_cost": 0.018127085923588027,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 3,
+      "smoothed_history_rate": 0.4444444444444444,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 26.68543085788131,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.03087049614828019,
+      "delta_verify_cost": 1.3302243515303793,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 4,
+      "smoothed_history_rate": 0.5,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 27.12171376394572,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.03617767235950575,
+      "delta_verify_cost": 0.43628290606440956,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 5,
+      "smoothed_history_rate": 0.5454545454545454,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 27.540627060328923,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.04127355544414524,
+      "delta_verify_cost": 0.4189132963832023,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 6,
+      "smoothed_history_rate": 0.5833333333333334,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 27.94156664234114,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.04615079675297573,
+      "delta_verify_cost": 0.40093958201221724,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 7,
+      "smoothed_history_rate": 0.6153846153846154,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 28.325019238103426,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.050815317104506263,
+      "delta_verify_cost": 0.38345259576228585,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 8,
+      "smoothed_history_rate": 0.6428571428571429,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 28.69202380368496,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.055279754910322776,
+      "delta_verify_cost": 0.36700456558153505,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 9,
+      "smoothed_history_rate": 0.6666666666666666,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 29.04386413708806,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.059559726968891,
+      "delta_verify_cost": 0.35184033340309995,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 10,
+      "smoothed_history_rate": 0.6875,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 29.38189640612389,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.06367173042333918,
+      "delta_verify_cost": 0.3380322690358284,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 11,
+      "smoothed_history_rate": 0.7058823529411765,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 29.707455110091384,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.06763199882954307,
+      "delta_verify_cost": 0.325558703967495,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 12,
+      "smoothed_history_rate": 0.7222222222222222,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 30.021804493698312,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.07145591112934291,
+      "delta_verify_cost": 0.31434938360692755,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 13,
+      "smoothed_history_rate": 0.7368421052631579,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 30.32611613140834,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.07515771897467549,
+      "delta_verify_cost": 0.304311637710029,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 14,
+      "smoothed_history_rate": 0.75,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 30.62146137974851,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.07875045491344734,
+      "delta_verify_cost": 0.29534524834016906,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 15,
+      "smoothed_history_rate": 0.7619047619047619,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 30.908812060707987,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.0822459407027587,
+      "delta_verify_cost": 0.28735068095947724,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 16,
+      "smoothed_history_rate": 0.7727272727272727,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 31.189045482723056,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.08565484838682269,
+      "delta_verify_cost": 0.28023342201506907,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 17,
+      "smoothed_history_rate": 0.782608695652174,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 31.46295152784251,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.08898678650899661,
+      "delta_verify_cost": 0.27390604511945327,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 18,
+      "smoothed_history_rate": 0.7916666666666666,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 31.731240496945787,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.09225039554516845,
+      "delta_verify_cost": 0.2682889691032777,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 19,
+      "smoothed_history_rate": 0.8,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 31.994550978122916,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.0954534436188954,
+      "delta_verify_cost": 0.26331048117712896,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 20,
+      "smoothed_history_rate": 0.8076923076923077,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 32.25345734403521,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.0986029177032679,
+      "delta_verify_cost": 0.25890636591229566,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 21,
+      "smoothed_history_rate": 0.8148148148148148,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 32.50847668537204,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.10170510796314802,
+      "delta_verify_cost": 0.25501934133682624,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 22,
+      "smoothed_history_rate": 0.8214285714285714,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 32.76007510490575,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.10476568431938549,
+      "delta_verify_cost": 0.251598419533714,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 23,
+      "smoothed_history_rate": 0.8275862068965517,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 33.008673363464084,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.10778976512941396,
+      "delta_verify_cost": 0.2485982585583315,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 24,
+      "smoothed_history_rate": 0.8333333333333334,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 33.25465190553924,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.11078197832142134,
+      "delta_verify_cost": 0.24597854207515724,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 25,
+      "smoothed_history_rate": 0.8387096774193549,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 33.49835531047878,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.11374651554099058,
+      "delta_verify_cost": 0.2437034049395379,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 26,
+      "smoothed_history_rate": 0.84375,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 33.740096222711855,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.11668717996045319,
+      "delta_verify_cost": 0.2417409122330767,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 27,
+      "smoothed_history_rate": 0.8484848484848485,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 33.98015881580263,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.11960742841746796,
+      "delta_verify_cost": 0.2400625930907765,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 28,
+      "smoothed_history_rate": 0.8529411764705882,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 34.218801843052546,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.12251040852416184,
+      "delta_verify_cost": 0.23864302724991404,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 29,
+      "smoothed_history_rate": 0.8571428571428571,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 34.4562613235618,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.1253989913418041,
+      "delta_verify_cost": 0.23745948050925136,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 30,
+      "smoothed_history_rate": 0.8611111111111112,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 34.692752908102015,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.1282758001605332,
+      "delta_verify_cost": 0.23649158454021801,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 31,
+      "smoothed_history_rate": 0.8648648648648649,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 34.92847396442201,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.13114323586612042,
+      "delta_verify_cost": 0.23572105631999563,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 32,
+      "smoothed_history_rate": 0.868421052631579,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 35.16360541703177,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.1340034993200756,
+      "delta_verify_cost": 0.23513145260975676,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 33,
+      "smoothed_history_rate": 0.8717948717948718,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 35.398313372252744,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.13685861112761977,
+      "delta_verify_cost": 0.23470795522097632,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 34,
+      "smoothed_history_rate": 0.875,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 35.6327505554607,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.13971042912106713,
+      "delta_verify_cost": 0.2344371832079588,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 35,
+      "smoothed_history_rate": 0.8780487804878049,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 35.867057584000335,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.14256066384423294,
+      "delta_verify_cost": 0.23430702853963226,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 36,
+      "smoothed_history_rate": 0.8809523809523809,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 36.1013640962084,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.1454108922864683,
+      "delta_verify_cost": 0.23430651220806453,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 37,
+      "smoothed_history_rate": 0.8837209302325582,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 36.335789754316224,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.148262570082497,
+      "delta_verify_cost": 0.23442565810782412,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 38,
+      "smoothed_history_rate": 0.8863636363636364,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 36.57044513667962,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.15111704236597268,
+      "delta_verify_cost": 0.23465538236339967,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 39,
+      "smoothed_history_rate": 0.8888888888888888,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 36.805432532766325,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.1539755534401266,
+      "delta_verify_cost": 0.2349873960867015,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 40,
+      "smoothed_history_rate": 0.8913043478260869,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 37.0408466525829,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.15683925540761245,
+      "delta_verify_cost": 0.2354141198165749,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 41,
+      "smoothed_history_rate": 0.8936170212765957,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 37.27677526071048,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.1597092158832526,
+      "delta_verify_cost": 0.23592860812757976,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 42,
+      "smoothed_history_rate": 0.8958333333333334,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 37.51329974381032,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.16258642489747555,
+      "delta_verify_cost": 0.2365244830998421,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 43,
+      "smoothed_history_rate": 0.8979591836734694,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 37.750495619329385,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.16547180108448056,
+      "delta_verify_cost": 0.2371958755190633,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 44,
+      "smoothed_history_rate": 0.9,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 37.98843299215832,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.16836619723726676,
+      "delta_verify_cost": 0.237937372828938,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 45,
+      "smoothed_history_rate": 0.9019607843137255,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 38.22717696514798,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.1712704053013736,
+      "delta_verify_cost": 0.23874397298965988,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 46,
+      "smoothed_history_rate": 0.9038461538461539,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 38.46678800865813,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.17418516087026625,
+      "delta_verify_cost": 0.23961104351014484,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 47,
+      "smoothed_history_rate": 0.9056603773584906,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 38.70732229367695,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.17711114723757904,
+      "delta_verify_cost": 0.2405342850188248,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 48,
+      "smoothed_history_rate": 0.9074074074074074,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 38.948831992499365,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.18004899905472382,
+      "delta_verify_cost": 0.24150969882241213,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 49,
+      "smoothed_history_rate": 0.9090909090909091,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 39.19136555047327,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.18299930563655686,
+      "delta_verify_cost": 0.24253355797390697,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    },
+    {
+      "prior_resolved_verifications": 50,
+      "smoothed_history_rate": 0.9107142857142857,
+      "risk_score": 0.09394140497427461,
+      "estimated_cost_allow": 51.96730052412987,
+      "estimated_cost_verify": 39.43496793190701,
+      "legitimate_abandonment_allow": 0.00010681478316598714,
+      "legitimate_abandonment_verify": 0.18596261395272584,
+      "delta_verify_cost": 0.2436023814337389,
+      "recent_prior_attempts": 0,
+      "recent_prior_verify_abandons": 0,
+      "decision": "verify",
+      "triggered_rules": [
+        "loss_limit",
+        "amount_limit"
+      ],
+      "model_warnings": [
+        "synthetic_training_only",
+        "allow_completion_simulator_assumption",
+        "outcomes_are_not_fraud_labels",
+        "outside_training_range:prior_verifications",
+        "outside_training_range:prior_verify_abandonment_rate"
+      ]
+    }
+  ],
+  "cost_decreases_at": []
+}

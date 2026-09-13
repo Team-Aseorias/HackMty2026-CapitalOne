@@ -35,6 +35,7 @@ export default function EvaluationDashboard({ onBack }: { onBack: () => void }) 
     </section>
     <section className="evaluation-section"><h2>Comparación reproducible de políticas</h2>
       <p>Buscamos menor costo esperado respetando límites de seguridad. Eso puede requerir más verificaciones. Los resultados provienen de un simulador, no de pérdidas bancarias reales.</p>
+      <p>Esta comparación usa intentos independientes: no mide ráfagas temporales ni demuestra que el aumento del costo por abandonos sea correcto en usuarios reales. Las reglas de frecuencia se prueban por separado.</p>
       <form className="ancla-actions" onSubmit={e => { e.preventDefault(); void run(); }}>
         <label>Casos <input type="number" min="100" max="10000" step="1" required disabled={busy} value={rows} onChange={e => setRows(Number(e.target.value))} /></label>
         <label>Semilla de prueba <input type="number" min="2027" step="1" required disabled={busy} value={seed} onChange={e => setSeed(Number(e.target.value))} /></label>

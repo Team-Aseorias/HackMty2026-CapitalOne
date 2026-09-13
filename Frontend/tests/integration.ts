@@ -59,6 +59,18 @@ test('actual browser API client → gateway → FastAPI inference, feedback, met
   assert.equal(metrics.completed, 1);
   assert.equal(metrics.abandoned, 1);
   assert.equal(metrics.pending, 0);
+  assert.equal(recent[0].fraud_status, 'unknown');
+  for (let n = 0; n < 2; n++) {
+    const retry = await evaluarCompra({ ...attempt, amount: 600 });
+    await registrarResultado(retry.id, 'abandoned');
+  }
+  const burst = await evaluarCompra({ ...attempt, amount: 600 });
+  assert.equal(burst.recent_activity?.prior_attempts, 4);
+  assert.equal(burst.recent_activity?.prior_verify_abandons, 3);
+  assert.equal(burst.personalization_evidence?.reported_abandons, 3);
+  assert.ok(burst.safety_checks?.some(check => check.code === 'attempt_velocity' && check.triggered));
+  assert.ok(burst.safety_checks?.some(check => check.code === 'verify_abandon_velocity' && check.triggered));
+  assert.equal(burst.fraud_status, 'unknown');
   const policies = await evaluarPoliticas(100, 2027);
   assert.equal(policies.length, 5);
   assert.equal(policies.find(p => p.policy === 'causal')?.safety_violations, 0);

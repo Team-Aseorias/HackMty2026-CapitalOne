@@ -26,6 +26,7 @@ async def create_purchase_attempt(attempt: PurchaseAttemptIn) -> DecisionOut:
     created_at = datetime.now(timezone.utc)
     decision_history = await repository.decision_history_for_account(attempt.account_id)
     history = await repository.history_for_account(attempt.account_id)
+    activity = await repository.activity_for_account(attempt.account_id, created_at)
     source = "nessie"
     try:
         account, customer, merchant = await NessieRepository().context_for_attempt(
@@ -42,6 +43,7 @@ async def create_purchase_attempt(attempt: PurchaseAttemptIn) -> DecisionOut:
         PurchaseService().assess_with_context,
         attempt, history, account, decision_history,
         context_available=bool(account or history),
+        activity=activity,
     )
     if is_configured():
         attempt_document = {

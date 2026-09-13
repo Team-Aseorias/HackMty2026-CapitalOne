@@ -38,6 +38,13 @@ El servidor de producción rechaza iniciar sin credenciales.
 
 ## Qué muestra
 
+La pantalla explica cada límite activado con su valor y umbral, diferencia
+la acción de menor costo de la recomendación final, muestra el historial usado
+y la actividad reciente por cuenta. Los resultados de fraude siguen desconocidos.
+También advierte sobre perfiles fuera del rango de entrenamiento y sobre el
+supuesto sintético de finalización bajo ALLOW. La evaluación por políticas no
+mide las reglas temporales, que se prueban por separado.
+
 - Intento real: POST /purchase-attempts, con monto, cliente, cuenta y comercio.
 - Recomendación: riesgo, costos esperados, probabilidades de completar **condicionadas
   a una compra legítima**, abandono incremental en puntos porcentuales, seguridad

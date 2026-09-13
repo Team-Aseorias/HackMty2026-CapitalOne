@@ -1,7 +1,7 @@
 import math
 
 from app.core.config import settings
-from app.schemas.decision import DecisionOut
+from app.schemas.decision import DecisionOut, SafetyCheck
 
 
 class DecisionService:
@@ -14,6 +14,7 @@ class DecisionService:
         amount: float = 0.0,
         context_available: bool = True,
         personalization_applied: bool = False,
+        additional_safety_checks: list[SafetyCheck] | None = None,
     ) -> DecisionOut:
         """Choose the action with lower estimated net cost.
 
@@ -35,12 +36,16 @@ class DecisionService:
             not math.isfinite(cost) or cost < 0 for cost in expected_costs
         ):
             raise ValueError("Invalid cost prediction; recommendation unavailable")
-        safety_override = (
-            risk_score >= settings.max_soft_risk
-            or risk_score * amount >= settings.max_soft_expected_loss
-            or amount >= settings.max_soft_amount
-            or not context_available
-        )
+        checks = [
+            SafetyCheck(code=code, observed=value, threshold=threshold, triggered=value >= threshold)
+            for code, value, threshold in (
+                ("risk_limit", risk_score, settings.max_soft_risk),
+                ("loss_limit", risk_score * amount, settings.max_soft_expected_loss),
+                ("amount_limit", amount, settings.max_soft_amount),
+                ("missing_context", float(not context_available), 1),
+            )
+        ] + (additional_safety_checks or [])
+        safety_override = any(check.triggered for check in checks)
         if expected_costs is None:
             verify = True  # Missing causal estimates never authorize a softer path.
             allow_cost = verify_cost = None
@@ -61,6 +66,8 @@ class DecisionService:
             risk_score=risk_score,
             safety_override=safety_override,
             personalization_applied=personalization_applied,
+            safety_checks=checks,
+            cost_preferred_action=("verify" if verify_cost < allow_cost else "allow") if expected_costs is not None else None,
             reason=reason,
             estimated_cost_allow=allow_cost,
             estimated_cost_verify=verify_cost,

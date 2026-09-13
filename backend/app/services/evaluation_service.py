@@ -11,10 +11,11 @@ from app.core.config import settings
 
 class EvaluationService:
     def run(self, rows: int = 1000, seed: int = 2027) -> list[PolicyEvaluation]:
-        """Held-out synthetic oracle evaluation of the exact serving policy.
+        """Held-out synthetic evaluation of the static decision policy.
 
         Oracle losses/outcomes only score actions AFTER prediction. They never
         enter the feature matrix. Results measure this simulator, not a bank.
+        Independent rows do not exercise temporal activity guardrails.
         """
         if seed == 2026:
             raise ValueError("Evaluation seed must differ from the training seed")

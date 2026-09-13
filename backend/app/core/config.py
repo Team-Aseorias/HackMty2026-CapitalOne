@@ -28,6 +28,10 @@ class Settings:
     max_soft_expected_loss: float = float(getenv("MAX_SOFT_EXPECTED_LOSS", "15"))
     max_soft_amount: float = float(getenv("MAX_SOFT_AMOUNT", "500"))
     min_personalization_history: int = int(getenv("MIN_PERSONALIZATION_HISTORY", "3"))
+    # Explicit demo guardrails, not calibrated probabilities of fraud.
+    activity_window_seconds: int = int(getenv("ACTIVITY_WINDOW_SECONDS", "600"))
+    max_window_attempts: int = int(getenv("MAX_WINDOW_ATTEMPTS", "5"))
+    max_window_verify_abandons: int = int(getenv("MAX_WINDOW_VERIFY_ABANDONS", "3"))
     api_key: str = getenv("BACKEND_API_KEY", "")
     demo_mode: bool = getenv("DEMO_MODE", "true").lower() == "true"
     cors_origins: str = getenv("CORS_ORIGINS", "http://localhost:5173")
@@ -39,6 +43,8 @@ class Settings:
             raise ValueError("Soft verification limits must be positive")
         if self.min_personalization_history < 1:
             raise ValueError("MIN_PERSONALIZATION_HISTORY must be positive")
+        if min(self.activity_window_seconds, self.max_window_attempts, self.max_window_verify_abandons) < 1:
+            raise ValueError("Activity window and thresholds must be positive")
 
 
 settings = Settings()

@@ -15,3 +15,4 @@ class PolicyEvaluation(BaseModel):
     sample_size: int = 1000
     data_source: str = "synthetic"
     model_version: str = "synthetic-v3"
+    evaluation_scope: str = "independent_synthetic_attempts_without_temporal_velocity"
