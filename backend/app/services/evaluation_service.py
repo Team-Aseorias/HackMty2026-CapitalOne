@@ -34,7 +34,8 @@ class EvaluationService:
             )
             policies["fixed_rule"].append(row["amount"] >= 500)
             policies["predictive"].append(
-                risk >= settings.max_soft_risk or risk * row["amount"] >= settings.max_soft_expected_loss
+                (risk >= settings.max_soft_risk and risk * row["amount"] >= settings.verify_cost)
+                or risk * row["amount"] >= settings.max_soft_expected_loss
                 or row["amount"] >= settings.max_soft_amount
             )
             policies["causal_unconstrained"].append(verify < allow)
@@ -55,7 +56,11 @@ class EvaluationService:
                 losses.append(loss)
                 completions += int(not row["fraud"] and row[f"completed_{arm}"])
                 captured += int(row["fraud"] and loss == 0)
-                violates = risk >= settings.max_soft_risk or risk * row["amount"] >= settings.max_soft_expected_loss or row["amount"] >= settings.max_soft_amount
+                violates = (
+                    (risk >= settings.max_soft_risk and risk * row["amount"] >= settings.verify_cost)
+                    or risk * row["amount"] >= settings.max_soft_expected_loss
+                    or row["amount"] >= settings.max_soft_amount
+                )
                 violations += int(not verify and violates)
             results.append(PolicyEvaluation(
                 policy=name, expected_cost=round(mean(costs), 4),

@@ -36,14 +36,26 @@ class DecisionService:
             not math.isfinite(cost) or cost < 0 for cost in expected_costs
         ):
             raise ValueError("Invalid cost prediction; recommendation unavailable")
+        expected_fraud_loss = risk_score * amount
+        # A percentage alone must not turn a low-value purchase into a forced
+        # challenge.  The high-risk guardrail applies only when the expected
+        # unverified loss can at least pay for the fixed verification friction.
+        # Larger exposures remain protected by the independent loss limit.
+        risk_limit_triggered = (
+            risk_score >= settings.max_soft_risk
+            and expected_fraud_loss >= settings.verify_cost
+        )
         checks = [
-            SafetyCheck(code=code, observed=value, threshold=threshold, triggered=value >= threshold)
-            for code, value, threshold in (
-                ("risk_limit", risk_score, settings.max_soft_risk),
-                ("loss_limit", risk_score * amount, settings.max_soft_expected_loss),
-                ("amount_limit", amount, settings.max_soft_amount),
-                ("missing_context", float(not context_available), 1),
-            )
+            SafetyCheck(code="risk_limit", observed=risk_score,
+                        threshold=settings.max_soft_risk, triggered=risk_limit_triggered),
+            SafetyCheck(code="loss_limit", observed=expected_fraud_loss,
+                        threshold=settings.max_soft_expected_loss,
+                        triggered=expected_fraud_loss >= settings.max_soft_expected_loss),
+            SafetyCheck(code="amount_limit", observed=amount,
+                        threshold=settings.max_soft_amount,
+                        triggered=amount >= settings.max_soft_amount),
+            SafetyCheck(code="missing_context", observed=float(not context_available),
+                        threshold=1, triggered=not context_available),
         ] + (additional_safety_checks or [])
         safety_override = any(check.triggered for check in checks)
         if expected_costs is None:

@@ -49,7 +49,7 @@ def test_insufficient_history_does_not_personalize(count):
 
 
 @pytest.mark.parametrize("risk,amount,context", [
-    (settings.max_soft_risk, 1, True),
+    (settings.max_soft_risk, settings.verify_cost / settings.max_soft_risk, True),
     (.1, settings.max_soft_expected_loss / .1, True),
     (.001, settings.max_soft_amount, True),
     (.001, 1, False),

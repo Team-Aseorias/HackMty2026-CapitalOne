@@ -121,10 +121,12 @@ API consumers authenticate with `X-API-Key` when the backend key is configured.
 This authenticates the consuming service, not the buyer or a fraud challenge.
 
 The default demo safety gates recommend `verify` when predicted fraud risk is
-at least 0.15, estimated unverified fraud loss is at least 15 amount units, the
+at least 0.15 **and its expected unverified loss covers the fixed verification
+cost**, estimated unverified fraud loss is at least 15 amount units, the
 purchase is at least 500 amount units, or usable account context is unavailable.
-They can be configured through `MAX_SOFT_RISK`, `MAX_SOFT_EXPECTED_LOSS` and
-`MAX_SOFT_AMOUNT`. These limits are demo assumptions, not production calibration.
+They can be configured through `MAX_SOFT_RISK`, `MAX_SOFT_EXPECTED_LOSS`,
+`MAX_SOFT_AMOUNT` and `VERIFY_COST`. These limits are demo assumptions, not
+production calibration.
 `FRAUD_COST` is retained only for legacy compatibility; current fraud loss scales
 with the purchase amount. No automatic model training from live consumer feedback
 is performed: training requires adjudicated fraud labels and valid treatment data.

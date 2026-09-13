@@ -30,6 +30,17 @@ def test_low_risk_friction_changes_recommendation():
     assert abandonment_prone.decision == "allow"
 
 
+def test_low_value_high_risk_does_not_force_uneconomic_verification():
+    """A 5-unit purchase cannot justify a 5-unit challenge on risk alone."""
+    result = DecisionService().decide(
+        risk_score=0.455, expected_costs=(1.99, 5.85), amount=5,
+    )
+    assert result.decision == "allow"
+    assert not result.safety_override
+    risk_check = next(check for check in result.safety_checks if check.code == "risk_limit")
+    assert not risk_check.triggered
+
+
 def test_abandonment_history_does_not_change_fraud_score():
     features = {"amount": 50, "hour": 12, "merchant_novelty": 0}
     model = RiskService()

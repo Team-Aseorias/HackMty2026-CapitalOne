@@ -56,3 +56,18 @@ def test_unknown_demo_profile_is_not_resolved(monkeypatch):
             "desconocido", DemoPurchaseAttemptIn(merchant="Shop", amount=10),
         ))
     assert getattr(error.value, "status_code", None) == 404
+
+
+def test_stable_profile_low_value_purchase_is_not_forced_by_risk(monkeypatch):
+    monkeypatch.setattr(decision_repository.DecisionRepository, "_records", {})
+    monkeypatch.setattr(decision_repository, "settings", SimpleNamespace(demo_mode=True))
+    monkeypatch.setattr(decision_repository, "get_database", lambda: None)
+
+    result = asyncio.run(create_demo_profile_attempt(
+        "estable", DemoPurchaseAttemptIn(merchant="Comercio nuevo", amount=5),
+    ))
+
+    assert result.decision == "allow"
+    assert result.risk_score > .15
+    assert not result.safety_override
+    assert not next(check for check in result.safety_checks if check.code == "risk_limit").triggered

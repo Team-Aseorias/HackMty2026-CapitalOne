@@ -26,7 +26,8 @@ def validity(seeds=(6201, 6202, 6203), rows=3000):
                 risk, expected_costs=prediction[:2], amount=row["amount"],
             ).decision
             predictive = ("verify" if (
-                risk >= settings.max_soft_risk or risk * row["amount"] >= settings.max_soft_expected_loss
+                (risk >= settings.max_soft_risk and risk * row["amount"] >= settings.verify_cost)
+                or risk * row["amount"] >= settings.max_soft_expected_loss
                 or row["amount"] >= settings.max_soft_amount
             ) else "allow")
             differences.append(row["cost_" + chosen] - row["cost_" + predictive])
