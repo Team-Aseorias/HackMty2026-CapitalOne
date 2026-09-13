@@ -14,6 +14,9 @@ class PersonalizationEvidence(BaseModel):
     reported_abandons: int
     smoothed_abandonment_rate: float
     minimum_history: int
+    model_prior_verifications: int | None = None
+    model_abandonment_rate: float | None = None
+    capped_fields: list[str] = Field(default_factory=list)
     prior_alpha: int = 1
     prior_beta: int = 5
     source: str = "consumer_reports_not_adjudicated_fraud_labels"

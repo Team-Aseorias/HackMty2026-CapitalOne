@@ -17,7 +17,12 @@ export interface Decision {
   safety_checks?: { code: string; observed: number; threshold: number; triggered: boolean }[];
   cost_preferred_action?: 'allow' | 'verify' | null;
   model_warnings?: string[];
-  personalization_evidence?: { resolved_verifications: number; reported_abandons: number; smoothed_abandonment_rate: number; minimum_history: number } | null;
+  personalization_evidence?: {
+    resolved_verifications: number; reported_abandons: number;
+    smoothed_abandonment_rate: number; minimum_history: number;
+    model_prior_verifications?: number | null; model_abandonment_rate?: number | null;
+    capped_fields?: string[];
+  } | null;
   recent_activity?: { window_seconds: number; prior_attempts: number; prior_verify_abandons: number } | null;
 }
 export type Outcome = 'pending' | 'completed' | 'abandoned';

@@ -11,6 +11,7 @@ from dataclasses import dataclass
 from typing import Any
 
 from app.core.config import settings
+from app.ml.history_support import bounded_history
 from app.ml.probability_models import RegularizedProbabilityModel, feature_matrix
 from app.ml.simulator import FEATURE_NAMES
 
@@ -40,12 +41,9 @@ class TLearner:
     def predict_many(self, features: list[dict]) -> list[tuple[float, float, float, float]]:
         if not features:
             return []
-        # Gating sparse histories also applies to direct/batch model callers.
-        normalized = [
-            {**row, "prior_verify_abandonment_rate": 1 / 6}
-            if row.get("prior_verifications", 0) < settings.min_personalization_history
-            else row for row in features
-        ]
+        # Bound history for API, direct and batch callers alike. Raw evidence
+        # remains available to diagnostics and the UI through the original rows.
+        normalized = [bounded_history(row) for row in features]
         fraud_matrix = feature_matrix(normalized, personalization=False)
         abandonment_matrix = feature_matrix(normalized)
         fraud_allow = _positive(self.allow_model, fraud_matrix)

@@ -52,6 +52,10 @@ class DecisionRepository:
         record = deepcopy(decision)
         if not record.get("id"):
             record["id"] = str(uuid4())
+        # Demo callers also need an attempt ID: Atlas enforces a unique index
+        # on this field, which permits only one missing/null value.
+        if not record.get("attempt_id"):
+            record["attempt_id"] = str(uuid4())
         record.setdefault("created_at", datetime.now(timezone.utc).isoformat())
         self._records[record["id"]] = record
         try:
@@ -95,7 +99,14 @@ class DecisionRepository:
                 ))
                 if record is not None:
                     self._records[decision_id] = record
+                elif await collection.find_one({"id": decision_id}) is None:
+                    raise PersistenceUnavailable(
+                        "Esta decisión no está guardada en MongoDB; no se registró el resultado. "
+                        "Crea una nueva evaluación y comprueba que indique guardada en MongoDB."
+                    )
                 return record
+        except PersistenceUnavailable:
+            raise
         except Exception as exc:
             logger.warning("Decision transition failed (%s)", type(exc).__name__)
             raise PersistenceUnavailable("Could not confirm decision transition") from exc

@@ -91,10 +91,15 @@ def test_extrapolation_and_history_evidence_are_disclosed():
         [], {"open_date": "2025-01-01"}, feedback,
     )
     assert "outside_training_range:amount" in result.model_warnings
-    assert "outside_training_range:prior_verifications" in result.model_warnings
+    assert "capped_to_training_range:prior_verifications" in result.model_warnings
+    assert "capped_to_training_range:prior_verify_abandonment_rate" in result.model_warnings
+    assert "outside_training_range:prior_verifications" not in result.model_warnings
+    assert "outside_training_range:prior_verify_abandonment_rate" not in result.model_warnings
     assert result.personalization_evidence.resolved_verifications == 20
     assert result.personalization_evidence.reported_abandons == 20
     assert result.personalization_evidence.smoothed_abandonment_rate == 21 / 26
+    assert result.personalization_evidence.model_prior_verifications == 12
+    assert result.personalization_evidence.model_abandonment_rate == 13 / 18
     assert any(c.code == "amount_outside_training" and c.triggered for c in result.safety_checks)
     assert result.fraud_status == "unknown"
 

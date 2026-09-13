@@ -12,6 +12,7 @@ import math
 import random
 
 from app.core.config import settings
+from app.ml.history_support import MAX_PRIOR_VERIFICATIONS
 
 FEATURE_NAMES = (
     "amount",
@@ -58,7 +59,7 @@ def generate_synthetic_data(rows: int = 1_000, seed: int = 2026) -> list[dict]:
         # This represents a stable but unobserved tolerance to interruption.
         # The model sees only its observable historical proxy below.
         friction_sensitivity = rng.betavariate(2, 5)
-        prior_verifications = rng.randrange(0, 13)
+        prior_verifications = rng.randrange(0, MAX_PRIOR_VERIFICATIONS + 1)
         historical_abandonment_probability = _sigmoid(-2.8 + 4.0 * friction_sensitivity)
         prior_abandons = sum(
             rng.random() < historical_abandonment_probability

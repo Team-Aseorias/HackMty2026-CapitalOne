@@ -18,6 +18,17 @@ Decision responses now disclose `safety_checks`, `cost_preferred_action`,
 Training-range warnings flag extrapolation; range membership does not prove
 calibration. Amounts outside the training envelope force a verify recommendation.
 
+Verification-history inputs are capped at inference: `prior_verifications` at
+12 and the smoothed abandonment rate to the simulator's nominal interval
+`[1/18, 13/18]`. Sparse histories still use the population prior. The raw count,
+abandonments and smoothed rate remain in `personalization_evidence`, alongside
+`model_prior_verifications`, `model_abandonment_rate` and `capped_fields`.
+`capped_to_training_range:*` identifies these adjustments; other out-of-range
+features still produce extrapolation warnings. The cap does not prove calibration
+or joint training support. It applies to new predictions, including batch calls;
+stored decisions retain their original estimates. Earlier audit snapshots predate
+this inference change and should be regenerated for numerical comparisons.
+
 FastAPI service for assessing purchase attempts with risk, causal uplift and configurable fraud/friction costs.
 
 ANCLA is a recommendation service. It estimates how verification changes a
